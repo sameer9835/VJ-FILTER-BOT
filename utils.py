@@ -215,7 +215,7 @@ async def search_gagala(text):
         'Chrome/61.0.3163.100 Safari/537.36'
         }
     text = text.replace(" ", '+')
-    url = f'https://t.me/Book_request_BUYM/15797'
+    url = f'https://t.me/Book_request_BUYM/15799'
     response = requests.get(url, headers=usr_agent)
     response.raise_for_status()
     soup = BeautifulSoup(response.text, 'html.parser')
@@ -736,5 +736,6 @@ async def get_seconds(time_string):
         return value * 86400 * 365
     else:
         return 0
+
 
 
