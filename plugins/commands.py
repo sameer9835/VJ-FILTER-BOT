@@ -653,7 +653,7 @@ async def start(client, message):
     btn = [[
         InlineKeyboardButton("Get that File Again", callback_data=f'del#{file_id}')
     ]]
-    k = await msg.reply("<b><u>❗️❗️❗️IMPORTANT❗️️❗️❗️</u></b>\n\nThis Audiobook will be deleted in <b><u>5 mins</u> 🫥 <i></b>(Due to Copyright Issues)</i>.\n\n<b><i>Please forward or save this File to your Saved Messages and Start Download there</i></b>",quote=True)
+    k = await msg.reply("<b><u>❗️❗️IMPORTANT❗️❗️</u></b>\n\nThis book will be deleted in <b><u>5 mins</u> 🫥 <i></b>(Due to Copyright Issues)</i>.\n\n<b><i>Please forward or save this File to your Saved Messages and Start Download there</i></b>",quote=True)
     await asyncio.sleep(300)
     await msg.delete()
     await k.edit_text("<b>Your book has been deleted successfully!!\n\nClick below button to get that file again 👇</b>",reply_markup=InlineKeyboardMarkup(btn))
@@ -1467,6 +1467,7 @@ async def purge_requests(client, message):
             parse_mode=enums.ParseMode.MARKDOWN,
             disable_web_page_preview=True
         )
+
 
 
 
