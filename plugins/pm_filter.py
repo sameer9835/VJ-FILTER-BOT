@@ -2515,7 +2515,7 @@ async def auto_filter(client, name, msg, reply_msg, ai_search, spoll=False):
                 if settings["spell_check"]:
                     return await advantage_spell_chok(client, name, msg, reply_msg, ai_search)
                 else:
-                    return await reply_msg.edit_text(f"""**⚠️ No Audiobook Found For Your Query - {name}**  
+                    return await reply_msg.edit_text(f"""**⚠️ No book Found For Your Query - {name}**  
 **Make Sure Your Spelling Is Correct or Try a Different Search Format.**  
 
 **Example:**  
@@ -3211,6 +3211,7 @@ async def global_filters(client, message, text=False):
                 break
     else:
         return False
+
 
 
 
