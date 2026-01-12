@@ -199,24 +199,20 @@ Nᴀᴍᴇ - {}"""
 
     I_CUDNT = """<b>
 sᴏʀʀʏ ɴᴏ ʙᴏᴏᴋꜱ ᴡᴇʀᴇ ꜰᴏᴜɴᴅ ꜰᴏʀ ʏᴏᴜʀ ʀᴇǫᴜᴇꜱᴛ {} 😕
+ᴄʜᴇᴄᴋ ʏᴏᴜʀ sᴘᴇʟʟɪɴɢ ᴀɴᴅ ᴛʀʏ ᴀɢᴀɪɴ 😃
 
-ᴄʜᴇᴄᴋ ʏᴏᴜʀ sᴘᴇʟʟɪɴɢ ɪɴ ɢᴏᴏɢʟᴇ ᴀɴᴅ ᴛʀʏ ᴀɢᴀɪɴ 😃
+📚 ʙᴏᴏᴋ ʀᴇǫᴜᴇꜱᴛ ꜰᴏʀᴍᴀᴛ :
+ᴇxᴀᴍᴘʟᴇ : Harry Potter  
 
-📚 ʙᴏᴏᴋ ʀᴇǫᴜᴇꜱᴛ ꜰᴏʀᴍᴀᴛ 👇
+🎧 ᴀᴜᴅɪᴏʙᴏᴏᴋ ʀᴇǫᴜᴇꜱᴛ ꜰᴏʀᴍᴀᴛ :
+ᴇxᴀᴍᴘʟᴇ : Rich Dad Poor Dad
 
-ᴇxᴀᴍᴘʟᴇ :
-• Harry Potter  
-• Atomic Habits  
-• The Alchemist  
+🚯 Dont use any symbols like ➠ : ( ! , . /
 
-🎧 ᴀᴜᴅɪᴏʙᴏᴏᴋ ʀᴇǫᴜᴇꜱᴛ ꜰᴏʀᴍᴀᴛ 👇
+📌 If your requested book is not available in the search, only then request the book here.
 
-ᴇxᴀᴍᴘʟᴇ :
-• Rich Dad Poor Dad  
-• Think and Grow Rich  
-• Ikigai  
-
-🚯 ᴅᴏɴᴛ ᴜꜱᴇ ➠ : ( ! , . /  
+❗️ Once you've submitted your book request, please be patient and allow us (1–24) hours.
+We will add it to our database. After that, you can search the book name again, and you will find your requested books. ✔️  
 </b>"""
 
     I_CUD_NT = """ɪ ᴄᴏᴜʟᴅɴ'ᴛ ꜰɪɴᴅ ᴀɴʏ ᴍᴏᴠɪᴇ ʀᴇʟᴀᴛᴇᴅ ᴛᴏ {}.
@@ -761,5 +757,6 @@ Example:- /set_caption 📕 File Name: {filename}
 
 
     
+
 
 
