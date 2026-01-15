@@ -40,10 +40,17 @@ async def give_filter(client, message):
         if settings['fsub'] != None:
             try:
                 btn = await pub_is_subscribed(client, message, settings['fsub'])
+                if settings['fsub'] != None:
+            try:
+                btn = await pub_is_subscribed(client, message, settings['fsub'])
                 if btn:
                     btn.append([InlineKeyboardButton("Done 👍", callback_data=f"unmuteme#{int(user_id)}")])
                     await client.restrict_chat_member(chatid, message.from_user.id, ChatPermissions(can_send_messages=False))
-                    await message.reply_photo(photo=random.choice(PICS), caption=f"👋 Hey Buddy {message.from_user.mention},\nPlease tap the below button & join the channel first then come back here to click on done button. then just type your book title only again and see the Magic 👇", reply_markup=InlineKeyboardMarkup(btn), parse_mode=enums.ParseMode.HTML)
+                    await message.reply_text(
+                        text=f"👋 Hey Buddy {message.from_user.mention},\nPlease tap the below button & join the channel then come back here & click on done button. then just type your book title again and see the Magic 👇",
+                        reply_markup=InlineKeyboardMarkup(btn),
+                        parse_mode=enums.ParseMode.HTML
+                    )
                     return
             except Exception as e:
                 print(e)
@@ -3211,6 +3218,7 @@ async def global_filters(client, message, text=False):
                 break
     else:
         return False
+
 
 
 
