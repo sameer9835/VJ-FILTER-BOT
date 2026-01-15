@@ -35,17 +35,19 @@ SPELL_CHECK = {}
 async def give_filter(client, message):
     if message.chat.id != SUPPORT_CHAT_ID:
         settings = await get_settings(message.chat.id)
-        chatid = message.chat.id 
+        chatid = message.chat.id
         user_id = message.from_user.id if message.from_user else 0
+
         if settings['fsub'] != None:
-            try:
-                btn = await pub_is_subscribed(client, message, settings['fsub'])
-                if settings['fsub'] != None:
             try:
                 btn = await pub_is_subscribed(client, message, settings['fsub'])
                 if btn:
                     btn.append([InlineKeyboardButton("Done 👍", callback_data=f"unmuteme#{int(user_id)}")])
-                    await client.restrict_chat_member(chatid, message.from_user.id, ChatPermissions(can_send_messages=False))
+                    await client.restrict_chat_member(
+                        chatid,
+                        message.from_user.id,
+                        ChatPermissions(can_send_messages=False)
+                    )
                     await message.reply_text(
                         text=f"👋 Hey Buddy {message.from_user.mention},\nPlease tap the below button & join the channel then come back here & click on done button. then just type your book title again and see the Magic 👇",
                         reply_markup=InlineKeyboardMarkup(btn),
@@ -54,7 +56,7 @@ async def give_filter(client, message):
                     return
             except Exception as e:
                 print(e)
-            
+
         manual = await manual_filters(client, message)
         if manual == False:
             settings = await get_settings(message.chat.id)
@@ -3218,6 +3220,7 @@ async def global_filters(client, message, text=False):
                 break
     else:
         return False
+
 
 
 
