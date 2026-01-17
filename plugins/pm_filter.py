@@ -92,7 +92,7 @@ async def pm_text(bot, message):
         reply_msg = await bot.send_message(message.from_user.id, f"<b><i>Searching For {content} 🔍</i></b>", reply_to_message_id=message.id)
         await auto_filter(bot, content, message, reply_msg, ai_search)
     else:
-        await message.reply_text(text=f"<b>ʜᴇʏ {user} 😍 ,\n\nThis bot is not made for work in personally. If you want any book then click this link and request in our Request group. <a href={GRP_LNK}>Request ɢʀᴏᴜᴘ</a> ᴏʀ click to below button 👇</b>", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("📝 Request here & Read instruction ", url=GRP_LNK)]]))
+        await message.reply_text(text=f"<b>ʜᴇʏ {user} 😍 ,\n\nI don't work in private message. If you want any book then click this link and search in our Request group. <a href={GRP_LNK}>Request ɢʀᴏᴜᴘ</a> ᴏʀ click to below button 👇</b>", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("📝 Request here & Read instruction ", url=GRP_LNK)]]))
         await bot.send_message(chat_id=LOG_CHANNEL, text=f"<b>#𝐏𝐌_𝐌𝐒𝐆\n\nNᴀᴍᴇ : {user}\n\nID : {user_id}\n\nMᴇssᴀɢᴇ : {content}</b>")
 
 @Client.on_callback_query(filters.regex(r"^next"))
@@ -3220,6 +3220,7 @@ async def global_filters(client, message, text=False):
                 break
     else:
         return False
+
 
 
 
