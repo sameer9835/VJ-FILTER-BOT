@@ -199,7 +199,7 @@ Search on ʏᴏᴜʀ own..."""
 
     I_CUDNT = """<b>
 Sᴏʀʀʏ, but ʙᴏᴏᴋ was not found for your Search - {} 😕
-Spelling might be incorrect, Check your speliing & ᴛʀʏ ᴀɢᴀɪɴ 😃
+Spelling might be incorrect, Check your spelling & ᴛʀʏ ᴀɢᴀɪɴ 😃
 
 📌 If your searched book is not available in the search, ONLY THEN request the book here. & please be patient and allow us (1–24) hours.
 We will add it to our database. After that, you can search the book name again, and you will find your requested books. ✔️  
@@ -747,6 +747,7 @@ Example:- /set_caption 📕 File Name: {filename}
 
 
     
+
 
 
 
