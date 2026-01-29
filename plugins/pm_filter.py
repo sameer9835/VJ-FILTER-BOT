@@ -2706,7 +2706,7 @@ async def advantage_spell_chok(client, name, msg, reply_msg, vj_search):
         logger.exception(e)
         reqst_gle = mv_rqst.replace(" ", "+")
         button = [[
-            InlineKeyboardButton("Request Format", url=f"https://t.me/Book_request_BUYM/15799")
+            InlineKeyboardButton("Request Format", url=f"https://t.me/Book_request_BUYM/32301")
         ]]
         if NO_RESULTS_MSG:
             await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
@@ -2718,7 +2718,7 @@ async def advantage_spell_chok(client, name, msg, reply_msg, vj_search):
     if not movies:
         reqst_gle = mv_rqst.replace(" ", "+")
         button = [[
-            InlineKeyboardButton("Request Format", url=f"https://t.me/Book_request_BUYM/15799")
+            InlineKeyboardButton("Request Format", url=f"https://t.me/Book_request_BUYM/32301")
         ]]
         if NO_RESULTS_MSG:
             await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
@@ -2744,7 +2744,7 @@ async def advantage_spell_chok(client, name, msg, reply_msg, vj_search):
                 break
         reqst_gle = mv_rqst.replace(" ", "+")
         button = [[
-            InlineKeyboardButton("Request Format", url=f"https://t.me/Book_request_BUYM/15799")
+            InlineKeyboardButton("Request Format", url=f"https://t.me/Book_request_BUYM/32301")
         ]]
         if NO_RESULTS_MSG:
             await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
@@ -3220,6 +3220,7 @@ async def global_filters(client, message, text=False):
                 break
     else:
         return False
+
 
 
 
