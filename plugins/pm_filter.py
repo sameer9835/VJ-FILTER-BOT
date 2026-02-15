@@ -49,7 +49,7 @@ async def give_filter(client, message):
                         ChatPermissions(can_send_messages=False)
                     )
                     await message.reply_text(
-                        text=f"👋 Hey Buddy {message.from_user.mention},\n\nPlease tap the below button & join the channel then come back here & click on done button. then just type your book title again and see the Magic. 👇",
+                        text = f"<b>👋 Hey Dear {message.from_user.mention},\n⚠️ You must Join the Channel mentioned below to access SEARCH Feature.\n★ Please tap the button below ➜ Join the channel ➜ Come back here ➜ Click on Done ➜ Then type your book title again & see the magic. 👇</b>",
                         reply_markup=InlineKeyboardMarkup(btn),
                         parse_mode=enums.ParseMode.HTML
                     )
@@ -92,7 +92,7 @@ async def pm_text(bot, message):
         reply_msg = await bot.send_message(message.from_user.id, f"<b><i>Searching For {content} 🔍</i></b>", reply_to_message_id=message.id)
         await auto_filter(bot, content, message, reply_msg, ai_search)
     else:
-        await message.reply_text(text=f"<b>ʜᴇʏ {user} 😍 ,\n\n📚 Book search is only available in our Search Group. To find your book: ➜ Click the link below ➜ Search your book title there. <a href={GRP_LNK}>Read Instruction in Search Group</a> OR click on below button 👇</b>", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("📝 Read instructions & Search 👈 ", url=GRP_LNK)]]))
+        await message.reply_text(text=f"<b>ʜᴇʏ {user} 😍 ,\n\n📚 Book search is only available in our Search Group, Not here... To find your book: ➜ Click the link below ➜ Search your book title there. <a href={GRP_LNK}>Read Instruction in Search Group</a> OR click on below button 👇</b>", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("📝 Read instructions & Search 👈 ", url=GRP_LNK)]]))
         await bot.send_message(chat_id=LOG_CHANNEL, text=f"<b>#𝐏𝐌_𝐌𝐒𝐆\n\nNᴀᴍᴇ : {user}\n\nID : {user_id}\n\nMᴇssᴀɢᴇ : {content}</b>")
 
 @Client.on_callback_query(filters.regex(r"^next"))
@@ -3220,6 +3220,7 @@ async def global_filters(client, message, text=False):
                 break
     else:
         return False
+
 
 
 
