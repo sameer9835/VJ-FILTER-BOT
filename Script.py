@@ -198,19 +198,20 @@ Search on ʏᴏᴜʀ own..."""
 ᴅɪᴅ ʏᴏᴜ ᴍᴇᴀɴ ᴀɴʏ ᴏɴᴇ ᴏꜰ ᴛʜᴇꜱᴇ?"""
 
     I_CUDNT = """<b>
-❌ No results found for ➜
-{} 
+❌ No results found for :
+╰┈➤ {} 
 
-Please check the following ➜
-𝟏 ⟢ Make sure spelling is correct
-𝟐 ⟢ Type ONLY the book title
-   (Do NOT add extra words or symbols)
-   Example: Atomic Habits
-   OR: Atomic Habits James Clear
+📝 Please check the following ➜
+𝟏 ➤ Make sure Spelling is correct
 
-𝟑 ⟢ If it still does not appear,
-   Go to (Book Request Topics) and WRITE :
-   ✅ Complete ( TITLE + AUTHOR NAME )
+𝟐 ➤ Just Type only: (Title) or (Author name) or BOTH
+╰➤ Do NOT add extra words or symbols
+╰➤ Example: Atomic Habits
+       OR: Atomic Habits James Clear
+
+𝟑 ➤ If it still does not appear,
+Go to (Book Request Topics) & WRITE :
+✅ Complete ( TITLE + AUTHOR NAME )
 </b>"""
 
     I_CUD_NT = """ɪ ᴄᴏᴜʟᴅɴ'ᴛ ꜰɪɴᴅ ᴀɴʏ Book ʀᴇʟᴀᴛᴇᴅ ᴛᴏ {}.
@@ -755,6 +756,7 @@ Example:- /set_caption 📕 File Name: {filename}
 
 
     
+
 
 
 
