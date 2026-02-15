@@ -198,11 +198,19 @@ Search on ʏᴏᴜʀ own..."""
 ᴅɪᴅ ʏᴏᴜ ᴍᴇᴀɴ ᴀɴʏ ᴏɴᴇ ᴏꜰ ᴛʜᴇꜱᴇ?"""
 
     I_CUDNT = """<b>
-Sᴏʀʀʏ, but ʙᴏᴏᴋ was not found for your Search - {} 😕
-Spelling might be incorrect, Check your spelling & ᴛʀʏ ᴀɢᴀɪɴ 😃
+❌ No results found for ➜
+{} 
 
-📌 If your searched book is not available in the search, ONLY THEN request the book here. & please be patient and allow us (1–24) hours.
-We will add it to our database. After that, you can search the book name again, and you will find your requested books. ✔️  
+Please check the following ➜
+𝟏 ⟢ Make sure spelling is correct
+𝟐 ⟢ Type ONLY the book title
+   (Do NOT add extra words or symbols)
+   Example: Atomic Habits
+   OR: Atomic Habits James Clear
+
+𝟑 ⟢ If it still does not appear,
+   Go to (Book Request Topics) and WRITE :
+   ✅ Complete ( TITLE + AUTHOR NAME )
 </b>"""
 
     I_CUD_NT = """ɪ ᴄᴏᴜʟᴅɴ'ᴛ ꜰɪɴᴅ ᴀɴʏ Book ʀᴇʟᴀᴛᴇᴅ ᴛᴏ {}.
@@ -747,6 +755,7 @@ Example:- /set_caption 📕 File Name: {filename}
 
 
     
+
 
 
 
