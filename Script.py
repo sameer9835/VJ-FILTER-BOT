@@ -199,19 +199,19 @@ Search on ʏᴏᴜʀ own..."""
 
     I_CUDNT = """<b>
 ❌ No results found for :
-╰┈➤ {} 
+╰┈┈➤ {} 
 
-╰┈➤ 👤 Searched By ➜ {}
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+╰┈┈➤ 👤 Searched By ➜ {}
+━━━━━━━━━━━━━━━━━━━━━
 📝 Please check the following ➜
-𝟏 ➤ Make sure Spelling is correct
+𝟏 ┈➤ Make sure Spelling is correct.
 
-𝟐 ➤ Just Type only: (Title) or (Author name) or BOTH
-╰➤ Example: Atomic Habits
-    OR: Atomic Habits James Clear
+𝟐 ┈➤ Just Type only: (Title) or (Author name) or BOTH
+╰┈┈➤  Example: Atomic Habits
+      OR: Atomic Habits James Clear
 
-𝟑 ➤ If it still does not appear:
-    Go to (Request Topics) & WRITE: ( TITLE + AUTHOR NAME )
+𝟑 ┈➤ If it still does not appear :
+╰┈┈➤ Go to (Request Topics) & WRITE: ( TITLE + AUTHOR NAME )
 </b>"""
 
     I_CUD_NT = """ɪ ᴄᴏᴜʟᴅɴ'ᴛ ꜰɪɴᴅ ᴀɴʏ Book ʀᴇʟᴀᴛᴇᴅ ᴛᴏ {}.
@@ -756,6 +756,7 @@ Example:- /set_caption 📕 File Name: {filename}
 
 
     
+
 
 
 
