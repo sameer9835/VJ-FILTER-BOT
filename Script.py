@@ -206,8 +206,8 @@ Search on ʏᴏᴜʀ own..."""
 📝 Please check the following ➜
 𝟏 ┈➤ Make sure Spelling is correct.
 
-𝟐 ┈➤ Just Type only: (Title) or (Author name) or BOTH
-╰┈➤  Example: Atomic Habits
+𝟐 ┈➤ Just Type only: (Title) or (Author name) or BOTH :
+╰┈➤ Example: Atomic Habits
       OR: Atomic Habits James Clear
 
 𝟑 ┈➤ If it still does not appear :
@@ -756,6 +756,7 @@ Example:- /set_caption 📕 File Name: {filename}
 
 
     
+
 
 
 
