@@ -232,7 +232,7 @@ async def reset_settings(client, message):
         await db.update_bot(me.id, data)
         await message.reply("**Successfully Reset All Settings To Default.**")
 
-@Client.on_message(filters.command("stats") & filters.private)
+@Client.on_message(filters.command("stats") & filters.private & filters.user(ADMINS))
 async def stats(client, message):
     me = await client.get_me()
     total_users = await clonedb.total_users_count(me.id)
