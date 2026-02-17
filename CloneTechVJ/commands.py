@@ -232,11 +232,16 @@ async def reset_settings(client, message):
         await db.update_bot(me.id, data)
         await message.reply("**Successfully Reset All Settings To Default.**")
 
-@Client.on_message(filters.command("stats") & filters.private & filters.user(ADMINS))
+@Client.on_message(filters.command("stats") & filters.private)
 async def stats(client, message):
+
+    if message.from_user.id not in ADMINS:
+        return await message.reply("You are not authorized to use this command.")
+
     me = await client.get_me()
     total_users = await clonedb.total_users_count(me.id)
     filesp = col.count_documents({})
     totalsec = sec_col.count_documents({})
     total = int(filesp) + int(totalsec)
+
     await message.reply(f"**Total Files : {total}\n\nTotal Users : {total_users}**")
