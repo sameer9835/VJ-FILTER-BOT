@@ -1001,7 +1001,7 @@ async def advantage_spell_chok(client, name, msg, reply_msg, vj_search):
         button = [[
             InlineKeyboardButton("Gᴏᴏɢʟᴇ", url=f"https://www.google.com/search?q={reqst_gle}")
         ]]
-        k = await reply_msg.edit_text(text=script.I_CUDNT.format(mv_rqst), reply_markup=InlineKeyboardMarkup(button))
+        k = await reply_msg.edit_text(text=script.I_CUDNT.format(mv_rqst, msg.from_user.mention), reply_markup=InlineKeyboardMarkup(button))
         await asyncio.sleep(30)
         await k.delete()
         return
@@ -1011,7 +1011,7 @@ async def advantage_spell_chok(client, name, msg, reply_msg, vj_search):
         button = [[
             InlineKeyboardButton("Gᴏᴏɢʟᴇ", url=f"https://www.google.com/search?q={reqst_gle}")
         ]]
-        k = await reply_msg.edit_text(text=script.I_CUDNT.format(mv_rqst), reply_markup=InlineKeyboardMarkup(button))
+        k = await reply_msg.edit_text(text=script.I_CUDNT.format(mv_rqst, msg.from_user.mention), reply_markup=InlineKeyboardMarkup(button))
         await asyncio.sleep(30)
         await k.delete()
         return
@@ -1035,7 +1035,7 @@ async def advantage_spell_chok(client, name, msg, reply_msg, vj_search):
         button = [[
             InlineKeyboardButton("Gᴏᴏɢʟᴇ", url=f"https://www.google.com/search?q={reqst_gle}")
         ]]
-        k = await reply_msg.edit_text(text=script.I_CUDNT.format(mv_rqst), reply_markup=InlineKeyboardMarkup(button))
+        k = await reply_msg.edit_text(text=script.I_CUDNT.format(mv_rqst, msg.from_user.mention), reply_markup=InlineKeyboardMarkup(button))
         await asyncio.sleep(30)
         await k.delete()
         return
@@ -1056,6 +1056,7 @@ async def advantage_spell_chok(client, name, msg, reply_msg, vj_search):
         )
         await asyncio.sleep(600)
         await spell_check_del.delete()
+
 
 
 
