@@ -49,7 +49,7 @@ async def give_filter(client, message):
                         ChatPermissions(can_send_messages=False)
                     )
                     await message.reply_text(
-                        text = f"<b>👋 Hey Dear {message.from_user.mention},\n⚠️ You must Join the Channel mentioned below to access SEARCH Feature.\n★ Please tap the button below ➜ Join the channel ➜ Come back here ➜ Click on Done ➜ Then type your book title again & see the magic. 👇</b>",
+                        text = f"<b>👋 Hey Dear {message.from_user.mention},\n➜ 🚨 You must Join the Channel mentioned below to unlock SEARCH Feature.\n\n✮ Please tap the button below ➜ Join the channel ➜ Come back here ➜ Click on Done ➜ Then type your book title again & See the magic. 👇</b>",
                         reply_markup=InlineKeyboardMarkup(btn),
                         parse_mode=enums.ParseMode.HTML
                     )
@@ -3220,6 +3220,7 @@ async def global_filters(client, message, text=False):
                 break
     else:
         return False
+
 
 
 
