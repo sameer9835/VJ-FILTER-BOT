@@ -42,7 +42,7 @@ async def give_filter(client, message):
             try:
                 btn = await pub_is_subscribed(client, message, settings['fsub'])
                 if btn:
-                    btn.append([InlineKeyboardButton("Done 👍", callback_data=f"unmuteme#{int(user_id)}")])
+                    btn.append([InlineKeyboardButton("Then Click - Done 👍", callback_data=f"unmuteme#{int(user_id)}")])
                     await client.restrict_chat_member(
                         chatid,
                         message.from_user.id,
