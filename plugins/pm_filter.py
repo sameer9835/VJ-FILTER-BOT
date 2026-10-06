@@ -86,23 +86,46 @@ async def pm_text(bot, message):
     content = message.text
     user = message.from_user.first_name
     user_id = message.from_user.id
-    if content.startswith("/") or content.startswith("#"): return  # ignore commands and hashtags
-    if PM_SEARCH == True:
-        ai_search = True
-        reply_msg = await bot.send_message(message.from_user.id, f"<b><i>Searching For {content} 🔍</i></b>", reply_to_message_id=message.id)
-        await auto_filter(bot, content, message, reply_msg, ai_search)
-   else:
-    await message.reply_text(
-        text=f"<b>👋 𝗛𝗘𝗬, 𝗗𝗘𝗔𝗥 𝗥𝗘𝗔𝗗𝗘𝗥 {user}! 🌻\n\n📚 🔎 𝗕𝗢𝗢𝗞 𝗦𝗘𝗔𝗥𝗖𝗛 𝗪𝗢𝗥𝗞𝗦 𝗜𝗡 𝗧𝗛𝗘 𝗚𝗥𝗢𝗨𝗣, 𝗡𝗢𝗧 𝗜𝗡 𝗧𝗛𝗜𝗦 𝗣𝗥𝗜𝗩𝗔𝗧𝗘 𝗖𝗛𝗔𝗧.\n\nTo find your book, just tap the button below.\n\nIt will take you straight to the 𝗜𝗡𝗦𝗧𝗥𝗨𝗖𝗧𝗜𝗢𝗡𝗦 &amp; 𝗦𝗘𝗔𝗥𝗖𝗛.\n\n👉 Once you're there, type &amp; send your book title.\n\n❤️ That's all you need to do.</b>",
-        reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("📝 Read instructions & Search 👈", url=GRP_LNK)]]
-        )
-    )
 
-    await bot.send_message(
-        chat_id=LOG_CHANNEL,
-        text=f"<b>#𝐏𝐌_𝐌𝐒𝐆\n\nNᴀᴍᴇ : {user}\n\nID : {user_id}\n\nMᴇssᴀɢᴇ : {content}</b>"
-    )
+    if content.startswith("/") or content.startswith("#"):
+        return
+
+    if PM_SEARCH:
+        ai_search = True
+
+        reply_msg = await bot.send_message(
+            message.from_user.id,
+            f"<b><i>Searching For {content} 🔍</i></b>",
+            reply_to_message_id=message.id
+        )
+
+        await auto_filter(bot, content, message, reply_msg, ai_search)
+
+    else:
+        await message.reply_text(
+            text=f"<b>👋 𝗛𝗘𝗬, 𝗗𝗘𝗔𝗥 𝗥𝗘𝗔𝗗𝗘𝗥 {user}! 🌻\n\n"
+                 f"📚 🔎 𝗕𝗢𝗢𝗞 𝗦𝗘𝗔𝗥𝗖𝗛 𝗪𝗢𝗥𝗞𝗦 𝗜𝗡 𝗧𝗛𝗘 𝗚𝗥𝗢𝗨𝗣, 𝗡𝗢𝗧 𝗜𝗡 𝗧𝗛𝗜𝗦 𝗣𝗥𝗜𝗩𝗔𝗧𝗘 𝗖𝗛𝗔𝗧.\n\n"
+                 f"To find your book, just tap the button below.\n\n"
+                 f"It will take you straight to the 𝗜𝗡𝗦𝗧𝗥𝗨𝗖𝗧𝗜𝗢𝗡𝗦 &amp; 𝗦𝗘𝗔𝗥𝗖𝗛.\n\n"
+                 f"👉 Once you're there, type &amp; send your book title.\n\n"
+                 f"❤️ That's all you need to do.</b>",
+            reply_markup=InlineKeyboardMarkup(
+                [[
+                    InlineKeyboardButton(
+                        "📝 Read instructions & Search 👈",
+                        url=GRP_LNK
+                    )
+                ]]
+            )
+        )
+
+        await bot.send_message(
+            chat_id=LOG_CHANNEL,
+            text=f"<b>#𝐏𝐌_𝐌𝐒𝐆\n\n"
+                 f"Nᴀᴍᴇ : {user}\n\n"
+                 f"ID : {user_id}\n\n"
+                 f"Mᴇssᴀɢᴇ : {content}</b>"
+        )
 
 @Client.on_callback_query(filters.regex(r"^next"))
 async def next_page(bot, query):
