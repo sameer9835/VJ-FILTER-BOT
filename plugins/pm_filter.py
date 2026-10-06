@@ -42,14 +42,14 @@ async def give_filter(client, message):
             try:
                 btn = await pub_is_subscribed(client, message, settings['fsub'])
                 if btn:
-                    btn.append([InlineKeyboardButton("Then Click - Done 👍", callback_data=f"unmuteme#{int(user_id)}")])
+                    btn.append([InlineKeyboardButton("𝗧𝗛𝗘𝗡 𝗧𝗔𝗣 - 𝗗𝗢𝗡𝗘 👍", callback_data=f"unmuteme#{int(user_id)}")])
                     await client.restrict_chat_member(
                         chatid,
                         message.from_user.id,
                         ChatPermissions(can_send_messages=False)
                     )
                     await message.reply_text(
-                        text = f"<b>👋 Hey Dear {message.from_user.mention},\n➜ 🚨 You must Join the Channel mentioned below to unlock SEARCH Feature.\n\n✮ Please tap the button below ➜ Join the channel ➜ Come back here ➜ Click on Done ➜ Then type your book title again & See the magic. 👇</b>",
+                        text = f"<b>👋 Hey Dear Reader, {message.from_user.mention}\n🌻 𝗝𝗨𝗦𝗧 𝗔 𝗟𝗜𝗧𝗧𝗟𝗘 𝗦𝗧𝗘𝗣 𝗕𝗘𝗙𝗢𝗥𝗘 𝗪𝗘 𝗦𝗘𝗔𝗥𝗖𝗛 : ❤️\n\n✮ 🔎 𝗧𝗢 𝗔𝗖𝗖𝗘𝗦𝗦 𝗧𝗛𝗘 𝗕𝗢𝗢𝗞 𝗦𝗘𝗔𝗥𝗖𝗛 𝗙𝗘𝗔𝗧𝗨𝗥𝗘, 𝗣𝗟𝗘𝗔𝗦𝗘 𝗝𝗢𝗜𝗡 𝗢𝗨𝗥 𝗧𝗛𝗘𝗦𝗘 𝗧𝗪𝗢 𝗖𝗛𝗔𝗡𝗡𝗘𝗟𝗦:\n➜ Then simply:\n1️⃣ 𝗖𝗢𝗠𝗘 𝗕𝗔𝗖𝗞 𝗛𝗘𝗥𝗘\n2️⃣ 𝗧𝗔𝗣 𝗗𝗢𝗡𝗘\n3️⃣ 𝗦𝗘𝗡𝗗 𝗬𝗢𝗨𝗥 𝗕𝗢𝗢𝗞 𝗧𝗜𝗧𝗟𝗘 𝗔𝗚𝗔𝗜𝗡\n\nThat's it — Now, Enjoy unlimited Books & Audiobooks. 👇</b>",
                         reply_markup=InlineKeyboardMarkup(btn),
                         parse_mode=enums.ParseMode.HTML
                     )
