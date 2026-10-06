@@ -49,7 +49,7 @@ async def give_filter(client, message):
                         ChatPermissions(can_send_messages=False)
                     )
                     await message.reply_text(
-                        text = f"<b>👋 Hey Dear Reader, {message.from_user.mention}\n\n🌻 𝗝𝗨𝗦𝗧 𝗔 𝗟𝗜𝗧𝗧𝗟𝗘 𝗦𝗧𝗘𝗣 𝗕𝗘𝗙𝗢𝗥𝗘 𝗪𝗘 𝗦𝗘𝗔𝗥𝗖𝗛 : ❤️\n\n✮ To Access BOOK Search Feature, 🔎\nPlease 𝗝𝗢𝗜𝗡 𝗢𝗨𝗥 𝗧𝗛𝗘𝗦𝗘 𝗧𝗪𝗢 𝗖𝗛𝗔𝗡𝗡𝗘𝗟𝗦:\n\n➜ Then simply:\n\n1️⃣ 𝗖𝗢𝗠𝗘 𝗕𝗔𝗖𝗞 𝗛𝗘𝗥𝗘\n2️⃣ 𝗧𝗔𝗣 𝗗𝗢𝗡𝗘\n3️⃣ 𝗦𝗘𝗡𝗗 𝗬𝗢𝗨𝗥 𝗕𝗢𝗢𝗞 𝗧𝗜𝗧𝗟𝗘 𝗔𝗚𝗔𝗜𝗡\n\nThat's it — Now, 🥳 Enjoy unlimited Books & Audiobooks. 👇</b>",
+                        text = f"<b>👋 Hey Dear Reader, {message.from_user.mention}\n\n🌻 𝗝𝗨𝗦𝗧 𝗔 𝗟𝗜𝗧𝗧𝗟𝗘 𝗦𝗧𝗘𝗣 𝗕𝗘𝗙𝗢𝗥𝗘 𝗪𝗘 𝗦𝗘𝗔𝗥𝗖𝗛 : ❤️\n\n✮ To Access BOOK Search Feature, 🔎\nPlease 𝗝𝗢𝗜𝗡 𝗢𝗨𝗥 𝗧𝗛𝗘𝗦𝗘 𝗖𝗛𝗔𝗡𝗡𝗘𝗟𝗦 𝗠𝗘𝗡𝗧𝗜𝗢𝗡𝗘𝗗 𝗕𝗘𝗟𝗢𝗪:\n\n➜ Then simply:\n\n1️⃣ 𝗖𝗢𝗠𝗘 𝗕𝗔𝗖𝗞 𝗛𝗘𝗥𝗘\n2️⃣ 𝗧𝗔𝗣 𝗗𝗢𝗡𝗘\n3️⃣ 𝗦𝗘𝗡𝗗 𝗬𝗢𝗨𝗥 𝗕𝗢𝗢𝗞 𝗧𝗜𝗧𝗟𝗘 𝗔𝗚𝗔𝗜𝗡\n\nThat's it — Now, 🥳 Enjoy unlimited Books & Audiobooks. 👇</b>",
                         reply_markup=InlineKeyboardMarkup(btn),
                         parse_mode=enums.ParseMode.HTML
                     )
@@ -92,14 +92,7 @@ async def pm_text(bot, message):
         reply_msg = await bot.send_message(message.from_user.id, f"<b><i>Searching For {content} 🔍</i></b>", reply_to_message_id=message.id)
         await auto_filter(bot, content, message, reply_msg, ai_search)
     else:
-        await message.reply_text(text=f"<b>👋 𝗛𝗘𝗬, 𝗗𝗘𝗔𝗥 𝗥𝗘𝗔𝗗𝗘𝗥 {user}! 🌻 ,\n\n📚 🔎 𝗕𝗢𝗢𝗞 𝗦𝗘𝗔𝗥𝗖𝗛 𝗪𝗢𝗥𝗞𝗦 𝗜𝗡 𝗧𝗛𝗘 𝗚𝗥𝗢𝗨𝗣, 𝗡𝗢𝗧 𝗜𝗡 𝗧𝗛𝗜𝗦 𝗣𝗥𝗜𝗩𝗔𝗧𝗘 𝗖𝗛𝗔𝗧.
-
-To find your book, just tap the button below.
-It will take you straight to the 𝗜𝗡𝗦𝗧𝗥𝗨𝗖𝗧𝗜𝗢𝗡𝗦 & 𝗦𝗘𝗔𝗥𝗖𝗛.
-
-👉 Once you're there, type & send your book title.
-
-❤️ That's all you need to do.</b>", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("📝 Read instructions & Search 👈 ", url=GRP_LNK)]]))
+        await message.reply_text(text=f"<b>👋 𝗛𝗘𝗬, 𝗗𝗘𝗔𝗥 𝗥𝗘𝗔𝗗𝗘𝗥 {user}! 🌻 ,\n\n📚 🔎 𝗕𝗢𝗢𝗞 𝗦𝗘𝗔𝗥𝗖𝗛 𝗪𝗢𝗥𝗞𝗦 𝗜𝗡 𝗧𝗛𝗘 𝗚𝗥𝗢𝗨𝗣, 𝗡𝗢𝗧 𝗜𝗡 𝗧𝗛𝗜𝗦 𝗣𝗥𝗜𝗩𝗔𝗧𝗘 𝗖𝗛𝗔𝗧.\n\nTo find your book, just tap the button below.\n\nIt will take you straight to the 𝗜𝗡𝗦𝗧𝗥𝗨𝗖𝗧𝗜𝗢𝗡𝗦 & 𝗦𝗘𝗔𝗥𝗖𝗛.\n\n👉 Once you're there, type & send your book title.\n\n❤️ That's all you need to do.</b>", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("📝 Read instructions & Search 👈 ", url=GRP_LNK)]]))
         await bot.send_message(chat_id=LOG_CHANNEL, text=f"<b>#𝐏𝐌_𝐌𝐒𝐆\n\nNᴀᴍᴇ : {user}\n\nID : {user_id}\n\nMᴇssᴀɢᴇ : {content}</b>")
 
 @Client.on_callback_query(filters.regex(r"^next"))
