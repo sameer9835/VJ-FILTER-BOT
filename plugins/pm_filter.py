@@ -49,7 +49,7 @@ async def give_filter(client, message):
                         ChatPermissions(can_send_messages=False)
                     )
                     await message.reply_text(
-                        text = f"<b>👋 Hey Dear Reader, {message.from_user.mention}\n\n🌻 𝗝𝗨𝗦𝗧 𝗔 𝗟𝗜𝗧𝗧𝗟𝗘 𝗦𝗧𝗘𝗣 𝗕𝗘𝗙𝗢𝗥𝗘 𝗪𝗘 𝗦𝗘𝗔𝗥𝗖𝗛 : ❤️\n\n✮ 𝗧𝗢 𝗔𝗖𝗖𝗘𝗦𝗦 𝗧𝗛𝗘 𝗕𝗢𝗢𝗞 𝗦𝗘𝗔𝗥𝗖𝗛 𝗙𝗘𝗔𝗧𝗨𝗥𝗘 🔎,\n𝗣𝗟𝗘𝗔𝗦𝗘 𝗝𝗢𝗜𝗡 𝗢𝗨𝗥 𝗧𝗛𝗘𝗦𝗘 𝗧𝗪𝗢 𝗖𝗛𝗔𝗡𝗡𝗘𝗟𝗦:\n\n➜ Then simply:\n\n1️⃣ 𝗖𝗢𝗠𝗘 𝗕𝗔𝗖𝗞 𝗛𝗘𝗥𝗘\n2️⃣ 𝗧𝗔𝗣 𝗗𝗢𝗡𝗘\n3️⃣ 𝗦𝗘𝗡𝗗 𝗬𝗢𝗨𝗥 𝗕𝗢𝗢𝗞 𝗧𝗜𝗧𝗟𝗘 𝗔𝗚𝗔𝗜𝗡\n\nThat's it — Now, 🥳 Enjoy unlimited Books & Audiobooks. 👇</b>",
+                        text = f"<b>👋 Hey Dear Reader, {message.from_user.mention}\n\n🌻 𝗝𝗨𝗦𝗧 𝗔 𝗟𝗜𝗧𝗧𝗟𝗘 𝗦𝗧𝗘𝗣 𝗕𝗘𝗙𝗢𝗥𝗘 𝗪𝗘 𝗦𝗘𝗔𝗥𝗖𝗛 : ❤️\n\n✮ To Access BOOK Search Feature, 🔎\nPlease 𝗝𝗢𝗜𝗡 𝗢𝗨𝗥 𝗧𝗛𝗘𝗦𝗘 𝗧𝗪𝗢 𝗖𝗛𝗔𝗡𝗡𝗘𝗟𝗦:\n\n➜ Then simply:\n\n1️⃣ 𝗖𝗢𝗠𝗘 𝗕𝗔𝗖𝗞 𝗛𝗘𝗥𝗘\n2️⃣ 𝗧𝗔𝗣 𝗗𝗢𝗡𝗘\n3️⃣ 𝗦𝗘𝗡𝗗 𝗬𝗢𝗨𝗥 𝗕𝗢𝗢𝗞 𝗧𝗜𝗧𝗟𝗘 𝗔𝗚𝗔𝗜𝗡\n\nThat's it — Now, 🥳 Enjoy unlimited Books & Audiobooks. 👇</b>",
                         reply_markup=InlineKeyboardMarkup(btn),
                         parse_mode=enums.ParseMode.HTML
                     )
