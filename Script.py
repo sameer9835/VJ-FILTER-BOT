@@ -202,19 +202,19 @@ Search on ʏᴏᴜʀ own..."""
 ╰┈➤ {}</b>
 
 ┈➤ 👤 𝗦𝗲𝗮𝗿𝗰𝗵𝗲𝗱 𝗯𝘆 ➜ {}
-━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━
 
 </b>🔍 𝗕𝗘𝗙𝗢𝗥𝗘 𝗦𝗘𝗔𝗥𝗖𝗛𝗜𝗡𝗚, 𝗤𝗨𝗜𝗖𝗞𝗟𝗬 𝗖𝗛𝗘𝗖𝗞 :</b>
-𝟏 ┈➤ Is the spelling correct ?
+1️⃣ ┈➤ Is the spelling correct ?
 
-𝟐 ┈➤ Just Type: (<b>𝗧𝗜𝗧𝗟𝗘</b>) or (<b>𝗔𝗨𝗧𝗛𝗢𝗥 𝗡𝗔𝗠𝗘</b>) or <b>𝗕𝗢𝗧𝗛</b> :
+2️⃣ ┈➤ Just Type: (<b>𝗧𝗜𝗧𝗟𝗘</b>) or (<b>𝗔𝗨𝗧𝗛𝗢𝗥 𝗡𝗔𝗠𝗘</b>) or <b>𝗕𝗢𝗧𝗛</b> :
 ╰┈➤ Example: <i>Atomic Habits</i>
       OR: <i>Atomic Habits James Clear</i>
-━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━
 
-𝟑 ┈➤ 𝗦𝗧𝗜𝗟𝗟 𝗖𝗔𝗡'𝗧 𝗙𝗜𝗡𝗗 𝗜𝗧 ❓
+3️⃣ ┈➤ 𝗦𝗧𝗜𝗟𝗟 𝗖𝗔𝗡'𝗧 𝗙𝗜𝗡𝗗 𝗜𝗧 ❓
 ╰┈➤ <i>No worries. We will make it available for you. ❤️</i>
-    Just <b>Request it</b> using the <b>BUTTONS</b> Below.
+✮➜ <b>Just Request it using the BUTTONS Below.</b>
 
 ✍️ For your <b>𝗥𝗘𝗤𝗨𝗘𝗦𝗧</b>, <b>𝗦𝗘𝗡𝗗</b> :
 <i>Complete </b>TITLE</b> by </b>Author Name</b></i>
