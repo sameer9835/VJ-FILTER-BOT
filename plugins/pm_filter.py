@@ -2666,13 +2666,13 @@ async def auto_filter(client, name, msg, reply_msg, ai_search, spoll=False):
 ┈➤ 👤 Searched by ➜ <b>{message.from_user.mention}</b>
 ┈➤ ⏱️ Results in ➜ <b>{remaining_seconds} Seconds</b>
 ━━━━━━━━━━━━━━━━━━━
-<b>📚 Books  •  🎧 Audiobooks</b>
+<b>📚 Books  ◆  🎧 Audiobooks</b>
 ┈➤ 𝗔𝗩𝗔𝗜𝗟𝗔𝗕𝗟𝗘 𝗙𝗜𝗟𝗘𝗦 𝗕𝗘𝗟𝗢𝗪.
 
 👇 𝗖𝗛𝗢𝗢𝗦𝗘 𝗧𝗛𝗘 𝗙𝗜𝗟𝗘 𝗬𝗢𝗨 𝗡𝗘𝗘𝗗 :
 
-<b>📘 BOOK →</b> <i>File Size shown first • Usually under 50 MB • Ends with <b>PDF</b> / <b>EPUB</b></i>
-<b>🎧 AUDIOBOOK →</b> <i>File Size shown first • Usually over 100 MB • Ends with <b>MP3</b> / <b>M4B</b> / <b>ZIP</b></i>"""
+<b>📘 BOOK ➜</b> <i>File Size shown first ◆ Usually under 50 MB ◆ Ends with <b>PDF</b> / <b>EPUB</b></i>
+<b>🎧 AUDIOBOOK ➜</b> <i>File Size shown first ◆ Usually over 100 MB ◆ Ends with <b>MP3</b> / <b>M4B</b> / <b>ZIP</b></i>"""
         else:
             cap = f"<b>╰┈➤ 📚 Results Showing For ➜ {search}\n\n╰┈➤ 👤 Searched By ➜ {message.from_user.mention}\n\n╰┈➤ ⏳ Results in ➜ {remaining_seconds} seconds\n</b>"
             cap+="<b><u>🍿 Your Movie Files 👇</u></b>\n\n"
