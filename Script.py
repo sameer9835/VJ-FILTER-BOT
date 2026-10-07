@@ -198,12 +198,11 @@ Search on ʏᴏᴜʀ own..."""
 ᴅɪᴅ ʏᴏᴜ ᴍᴇᴀɴ ᴀɴʏ ᴏɴᴇ ᴏꜰ ᴛʜᴇꜱᴇ?"""
 
     I_CUDNT = """
-</b>❌ 𝗡𝗢 𝗠𝗔𝗧𝗖𝗛 𝗙𝗢𝗨𝗡𝗗 𝗙𝗢𝗥 :
-╰┈➤ {}</b>
+</b>❌ 𝗡𝗢 𝗠𝗔𝗧𝗖𝗛 𝗙𝗢𝗨𝗡𝗗 𝗙𝗢𝗥 :</b>
+╰┈➤ </b>{}</b>
 
-┈➤ 👤 𝗦𝗲𝗮𝗿𝗰𝗵𝗲𝗱 𝗯𝘆 ➜ {}
+┈➤ 👤 𝗦𝗲𝗮𝗿𝗰𝗵𝗲𝗱 𝗯𝘆 ➜ </b>{}</b>
 ━━━━━━━━━━━━━━━━━━━━
-
 </b>🔍 𝗕𝗘𝗙𝗢𝗥𝗘 𝗦𝗘𝗔𝗥𝗖𝗛𝗜𝗡𝗚, 𝗤𝗨𝗜𝗖𝗞𝗟𝗬 𝗖𝗛𝗘𝗖𝗞 :</b>
 1️⃣ ┈➤ Is the spelling correct ?
 
@@ -211,10 +210,9 @@ Search on ʏᴏᴜʀ own..."""
 ╰┈➤ Example: <i>Atomic Habits</i>
       OR: <i>Atomic Habits James Clear</i>
 ━━━━━━━━━━━━━━━━━━━━
-
 3️⃣ ┈➤ 𝗦𝗧𝗜𝗟𝗟 𝗖𝗔𝗡'𝗧 𝗙𝗜𝗡𝗗 𝗜𝗧 ❓
 ╰┈➤ <i>No worries. We will make it available for you. ❤️</i>
-✮➜ <b>Just Request it using the BUTTONS Below.</b>
+✮ <b>Just Request it using the BUTTONS Below.</b>
 
 ✍️ For your <b>𝗥𝗘𝗤𝗨𝗘𝗦𝗧</b>, <b>𝗦𝗘𝗡𝗗</b> :
 <i>Complete </b>TITLE</b> by </b>Author Name</b></i>
