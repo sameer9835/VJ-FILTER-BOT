@@ -211,10 +211,10 @@ Search on ʏᴏᴜʀ own..."""
       OR: Atomic Habits James Clear
 ━━━━━━━━━━━━━━━━━━━━━
 𝟑 ┈➤ 𝗦𝗧𝗜𝗟𝗟 𝗖𝗔𝗡'𝗧 𝗙𝗜𝗡𝗗 𝗜𝗧 ❓
-╰┈➤ No worries. We will make it available for you. ❤️ 
+╰┈➤ </i>No worries. We will make it available for you. ❤️</i>
     Just Request it using the BUTTONS Below.
 
-✍️ For your 𝗥𝗘𝗤𝗨𝗘𝗦𝗧, 𝗦𝗘𝗡𝗗 : Complete Title by Author Name
+✍️ For your 𝗥𝗘𝗤𝗨𝗘𝗦𝗧, 𝗦𝗘𝗡𝗗 : Complete </i>TITLE by Author Name</i>
 </b>"""
     
     I_CUD_NT = """ɪ ᴄᴏᴜʟᴅɴ'ᴛ ꜰɪɴᴅ ᴀɴʏ Book ʀᴇʟᴀᴛᴇᴅ ᴛᴏ {}.
