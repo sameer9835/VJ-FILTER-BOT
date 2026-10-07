@@ -2659,19 +2659,20 @@ async def auto_filter(client, name, msg, reply_msg, ai_search, spoll=False):
                 cap += f"<b>\n📁 <a href='https://telegram.me/{temp.U_NAME}?start=files_{file['file_id']}'>[{get_size(file['file_size'])}] {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@') and not x.startswith('www.'), file['file_name'].split()))}\n</a></b>"
     else:
         if settings["button"]:
-            cap = f"""✅ {int(total_results)} 𝗥𝗘𝗦𝗨𝗟𝗧𝗦 𝗙𝗢𝗨𝗡𝗗 𝗙𝗢𝗥 :
+            cap = f"""✅ <b>122</b> 𝗥𝗘𝗦𝗨𝗟𝗧𝗦 𝗙𝗢𝗨𝗡𝗗 𝗙𝗢𝗥 :
 ╰┈➤ <b>{search}</b>
 
 ━━━━━━━━━━━━━━━━━━━
-┈➤ 👤 Searched by ➜ {message.from_user.mention}
-┈➤ ⏱️ Results in ➜ {remaining_seconds} Seconds
+┈➤ 👤 Searched by ➜ <b>{message.from_user.mention}</b>
+┈➤ ⏱️ Results in ➜ <b>{remaining_seconds} Seconds</b>
 ━━━━━━━━━━━━━━━━━━━
-📚 Books  •  🎧 Audiobooks
+<b>📚 Books  •  🎧 Audiobooks</b>
 ┈➤ 𝗔𝗩𝗔𝗜𝗟𝗔𝗕𝗟𝗘 𝗙𝗜𝗟𝗘𝗦 𝗕𝗘𝗟𝗢𝗪.
 
 👇 𝗖𝗛𝗢𝗢𝗦𝗘 𝗧𝗛𝗘 𝗙𝗜𝗟𝗘 𝗬𝗢𝗨 𝗡𝗘𝗘𝗗 :
-📘 BOOK → File ending with PDF / EPUB
-🎧 AUDIOBOOK → File ending with MP3 / M4B / ZIP"""
+
+<b>📘 BOOK →</b> <i>File ending with PDF / EPUB</i>
+<b>🎧 AUDIOBOOK →</b> <i>File ending with MP3 / M4B / ZIP</i>"""
         else:
             cap = f"<b>╰┈➤ 📚 Results Showing For ➜ {search}\n\n╰┈➤ 👤 Searched By ➜ {message.from_user.mention}\n\n╰┈➤ ⏳ Results in ➜ {remaining_seconds} seconds\n</b>"
             cap+="<b><u>🍿 Your Movie Files 👇</u></b>\n\n"
