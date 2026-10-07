@@ -202,16 +202,17 @@ Search on ʏᴏᴜʀ own..."""
 ╰┈➤ {}
 
 ┈➤ 👤 𝗦𝗲𝗮𝗿𝗰𝗵𝗲𝗱 𝗯𝘆 ➜ {}
-━━━━━━━━━━━━━━━━━━━━━
-🔍 𝗕𝗘𝗙𝗢𝗥𝗘 𝗦𝗘𝗔𝗥𝗖𝗛𝗜𝗡𝗚, 𝗤𝗨𝗜𝗖𝗞𝗟𝗬 𝗖𝗛𝗘𝗖𝗞:
+━━━━━━━━━━━━━━━━━━━━
+🔍 𝗕𝗘𝗙𝗢𝗥𝗘 𝗦𝗘𝗔𝗥𝗖𝗛𝗜𝗡𝗚, 𝗤𝗨𝗜𝗖𝗞𝗟𝗬 𝗖𝗛𝗘𝗖𝗞 :
 𝟏 ┈➤ Is the Spelling correct ?
 
-𝟐 ┈➤ Just Type: (𝗧𝗜𝗧𝗟𝗘) or (𝗔𝗨𝗧𝗛𝗢𝗥 𝗡𝗔𝗠𝗘) or 𝗕𝗢𝗧𝗛:
+𝟐 ┈➤ Just Type: (𝗧𝗜𝗧𝗟𝗘) or (𝗔𝗨𝗧𝗛𝗢𝗥 𝗡𝗔𝗠𝗘) or 𝗕𝗢𝗧𝗛 :
 ╰┈➤ Example: Atomic Habits
       OR: Atomic Habits James Clear
-━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━
 𝟑 ┈➤ 𝗦𝗧𝗜𝗟𝗟 𝗖𝗔𝗡'𝗧 𝗙𝗜𝗡𝗗 𝗜𝗧 ❓
 ╰┈➤ No worries. Just Request it using the buttons below. We will make it available for you. ❤️
+
 ✍️ For your 𝗥𝗘𝗤𝗨𝗘𝗦𝗧, 𝗦𝗘𝗡𝗗 : Complete Title by Author Name
 </b>"""
 
