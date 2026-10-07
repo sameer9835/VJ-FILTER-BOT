@@ -2737,9 +2737,26 @@ async def advantage_spell_chok(client, name, msg, reply_msg, vj_search):
     except Exception as e:
         logger.exception(e)
         reqst_gle = mv_rqst.replace(" ", "+")
-        button = [[
-            InlineKeyboardButton("✅ Read Complete Instruction 👈", url=f"https://t.me/Book_request_BUYM/32301")
-        ]]
+        button = [
+            [
+                InlineKeyboardButton(
+                    "📝 𝗙𝗨𝗟𝗟 𝗜𝗡𝗦𝗧𝗥𝗨𝗖𝗧𝗜𝗢𝗡𝗦 👈",
+                    url="https://t.me/Book_request_BUYM/1/32301"
+                )
+            ],
+            [
+                InlineKeyboardButton(
+                    "📌 REQUEST a BOOK 📖",
+                    url="https://t.me/Book_request_BUYM/39977/40013"
+                )
+            ],
+            [
+                InlineKeyboardButton(
+                    "📍 REQUEST an AUDIOBOOK 🎧",
+                    url="https://t.me/Book_request_BUYM/39979/40023"
+                )
+            ]
+        ]
         if NO_RESULTS_MSG:
             await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
         k = await reply_msg.edit_text(text=script.I_CUDNT.format(mv_rqst, msg.from_user.mention), reply_markup=InlineKeyboardMarkup(button))
@@ -2749,9 +2766,26 @@ async def advantage_spell_chok(client, name, msg, reply_msg, vj_search):
     movielist = []
     if not movies:
         reqst_gle = mv_rqst.replace(" ", "+")
-        button = [[
-            InlineKeyboardButton("✅ Read Complete Instruction 👈", url=f"https://t.me/Book_request_BUYM/32301")
-        ]]
+        button = [
+            [
+                InlineKeyboardButton(
+                    "📝 𝗙𝗨𝗟𝗟 𝗜𝗡𝗦𝗧𝗥𝗨𝗖𝗧𝗜𝗢𝗡𝗦 👈",
+                    url="https://t.me/Book_request_BUYM/1/32301"
+                )
+            ],
+            [
+                InlineKeyboardButton(
+                    "📌 REQUEST a BOOK 📖",
+                    url="https://t.me/Book_request_BUYM/39977/40013"
+                )
+            ],
+            [
+                InlineKeyboardButton(
+                    "📍 REQUEST an AUDIOBOOK 🎧",
+                    url="https://t.me/Book_request_BUYM/39979/40023"
+                )
+            ]
+        ]
         if NO_RESULTS_MSG:
             await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
         k = await reply_msg.edit_text(text=script.I_CUDNT.format(mv_rqst, msg.from_user.mention), reply_markup=InlineKeyboardMarkup(button))
@@ -2775,9 +2809,26 @@ async def advantage_spell_chok(client, name, msg, reply_msg, vj_search):
                 await auto_filter(client, techvj, msg, reply_msg, vj_search_new)
                 break
         reqst_gle = mv_rqst.replace(" ", "+")
-        button = [[
-            InlineKeyboardButton("✅ Read Complete Instruction 👈", url=f"https://t.me/Book_request_BUYM/32301")
-        ]]
+        button = [
+            [
+                InlineKeyboardButton(
+                    "📝 𝗙𝗨𝗟𝗟 𝗜𝗡𝗦𝗧𝗥𝗨𝗖𝗧𝗜𝗢𝗡𝗦 👈",
+                    url="https://t.me/Book_request_BUYM/1/32301"
+                )
+            ],
+            [
+                InlineKeyboardButton(
+                    "📌 REQUEST a BOOK 📖",
+                    url="https://t.me/Book_request_BUYM/39977/40013"
+                )
+            ],
+            [
+                InlineKeyboardButton(
+                    "📍 REQUEST an AUDIOBOOK 🎧",
+                    url="https://t.me/Book_request_BUYM/39979/40023"
+                )
+            ]
+        ]
         if NO_RESULTS_MSG:
             await client.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, mv_rqst)))
         k = await reply_msg.edit_text(text=script.I_CUDNT.format(mv_rqst, msg.from_user.mention), reply_markup=InlineKeyboardMarkup(button))
