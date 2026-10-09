@@ -2663,8 +2663,8 @@ async def auto_filter(client, name, msg, reply_msg, ai_search, spoll=False):
 ╰┈➤ <b>{search}</b>
 
 ━━━━━━━━━━━━━━━━━━━
-┈➤ 👤 Searched by ➜ {message.from_user.mention}
-┈➤ ⏱️ Results in ➜ {remaining_seconds} Seconds
+👤 Searched by ➜ {message.from_user.mention}
+⏱️ Results in ➜ {remaining_seconds} Seconds
 ━━━━━━━━━━━━━━━━━━━
 👇 𝗖𝗛𝗢𝗢𝗦𝗘 𝗧𝗛𝗘 𝗙𝗜𝗟𝗘 𝗬𝗢𝗨 𝗡𝗘𝗘𝗗 :
 
