@@ -203,20 +203,18 @@ Search on ʏᴏᴜʀ own..."""
 
 👤 𝗦𝗲𝗮𝗿𝗰𝗵𝗲𝗱 𝗯𝘆 ➜ {}
 ━━━━━━━━━━━━━━━━━━━━
-</b>🔍 𝗕𝗘𝗙𝗢𝗥𝗘 𝗦𝗘𝗔𝗥𝗖𝗛𝗜𝗡𝗚, 𝗤𝗨𝗜𝗖𝗞𝗟𝗬 𝗖𝗛𝗘𝗖𝗞 :</b>
-
-1️⃣  Is the spelling correct ?
+<blockquote></b>🔍 𝗕𝗘𝗙𝗢𝗥𝗘 𝗦𝗘𝗔𝗥𝗖𝗛𝗜𝗡𝗚, 𝗤𝗨𝗜𝗖𝗞𝗟𝗬 𝗖𝗛𝗘𝗖𝗞 :</b></blockquote>
+1️⃣  <b>Is the spelling correct ?</b>
 
 2️⃣  Just Type: (𝗧𝗜𝗧𝗟𝗘) or (𝗔𝗨𝗧𝗛𝗢𝗥 𝗡𝗔𝗠𝗘) or 𝗕𝗢𝗧𝗛 :
-╰┈➤ Example: <i>Atomic Habits ✅</i>
-      OR: <i>Atomic Habits James Clear ✅</i>
-        <i>Atomic Habits by James Clear ❌</i>
+<blockquote>Example: <i>Atomic Habits ✅</i>
+<i>Atomic Habits James Clear ✅</i>
+<i>Atomic Habits by James Clear ❌</i></blockquote>
 ━━━━━━━━━━━━━━━━━━━━
-</b>👀  𝗦𝗧𝗜𝗟𝗟 𝗖𝗔𝗡'𝗧 𝗙𝗜𝗡𝗗 𝗜𝗧 ❓</b>
+<blockquote></b>🤔  𝗦𝗧𝗜𝗟𝗟 𝗖𝗔𝗡'𝗧 𝗙𝗜𝗡𝗗 𝗜𝗧 ❓</b></blockquote>
 ╰┈➤ <i>No worries. We will make it available for you.</i>
-
-<b>✮ Tap the appropriate 𝗥𝗘𝗤𝗨𝗘𝗦𝗧 button below, then 𝗦𝗘𝗡𝗗 :</b>
-✍️ <i></b>TITLE</b> by </b>Author Name</b></i> — MUST specify - (BOOK / AUDIOBOOK)
+<b>➜ Tap the appropriate 𝗥𝗘𝗤𝗨𝗘𝗦𝗧 button below, then 𝗦𝗘𝗡𝗗 :</b>
+<blockquote>✍️ <i></b>TITLE</b> by </b>Author Name</b></i> — MUST specify -(BOOK or AUDIOBOOK)</blockquote>
 """
     
     I_CUD_NT = """ɪ ᴄᴏᴜʟᴅɴ'ᴛ ꜰɪɴᴅ ᴀɴʏ Book ʀᴇʟᴀᴛᴇᴅ ᴛᴏ {}.
