@@ -2569,29 +2569,7 @@ async def auto_filter(client, name, msg, reply_msg, ai_search, spoll=False):
 <blockquote></b>🤔  𝗦𝗧𝗜𝗟𝗟 𝗖𝗔𝗡'𝗧 𝗙𝗜𝗡𝗗 𝗜𝗧 ❓</b></blockquote>
 ╰┈➤ <i>No worries. We will make it available for you.</i>
 <b>➜ Tap the appropriate 𝗥𝗘𝗤𝗨𝗘𝗦𝗧 button below, then 𝗦𝗘𝗡𝗗 :</b>
-<blockquote>✍️ <i></b>TITLE</b> by </b>Author Name</b></i> — MUST specify -(BOOK or AUDIOBOOK)</blockquote>""",
-    reply_markup=InlineKeyboardMarkup([
-        [
-            InlineKeyboardButton(
-                "📝 FULL INSTRUCTIONS 👈",
-                url="https://t.me/Book_request_BUYM/1/32301"
-            )
-        ],
-        [
-            InlineKeyboardButton(
-                "📌 REQUEST a BOOK 📖",
-                url="https://t.me/Book_request_BUYM/39977/40013"
-            )
-        ],
-        [
-            InlineKeyboardButton(
-                "📍 REQUEST an AUDIOBOOK 🎧",
-                url="https://t.me/Book_request_BUYM/39979/40023"
-            )
-        ]
-    ]),
-    parse_mode=enums.ParseMode.HTML
-)
+<blockquote>✍️ <i></b>TITLE</b> by </b>Author Name</b></i> — MUST specify -(BOOK or AUDIOBOOK)</blockquote>""")
         else:
             return
     else:
