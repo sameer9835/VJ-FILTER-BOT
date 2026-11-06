@@ -1,7 +1,3 @@
-# Don't Remove Credit @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot @Tech_VJ
-# Ask Doubt on telegram @KingVJ01
-
 import os, logging, string, asyncio, time, re, ast, random, math, pytz, pyrogram
 from datetime import datetime, timedelta, date, time
 from Script import script
@@ -2556,14 +2552,23 @@ async def auto_filter(client, name, msg, reply_msg, ai_search, spoll=False):
                 if settings["spell_check"]:
                     return await advantage_spell_chok(client, name, msg, reply_msg, ai_search)
                 else:
-                    return await reply_msg.edit_text(f"""**⚠️ No book Found For Your Query - {name}**  
-**Make Sure Your Spelling Is Correct or Try a Different Search Format.**  
+                    return await reply_msg.edit_text(</b>❌ 𝗡𝗢 𝗠𝗔𝗧𝗖𝗛 𝗙𝗢𝗨𝗡𝗗 𝗙𝗢𝗥 :</b>
+╰┈➤ </b>{}</b>
 
-**Example:**  
-- Request Format: `Harry Potter`  
-- Avoid Using Special Characters: `':(!,./)`  
+👤 𝗦𝗲𝗮𝗿𝗰𝗵𝗲𝗱 𝗯𝘆 ➜ {}
+━━━━━━━━━━━━━━━━━━━━
+<blockquote></b>🔍 𝗕𝗘𝗙𝗢𝗥𝗘 𝗦𝗘𝗔𝗥𝗖𝗛𝗜𝗡𝗚, 𝗤𝗨𝗜𝗖𝗞𝗟𝗬 𝗖𝗛𝗘𝗖𝗞 :</b></blockquote>
+1️⃣  <b>Is the spelling correct ?</b>
 
-🚨 **For more books, message @mrprashant00.**""")
+2️⃣  Just Type: (𝗧𝗜𝗧𝗟𝗘) or (𝗔𝗨𝗧𝗛𝗢𝗥 𝗡𝗔𝗠𝗘) or 𝗕𝗢𝗧𝗛 :
+<blockquote>Example: <i>Atomic Habits ✅</i>
+<i>Atomic Habits James Clear ✅</i>
+<i>Atomic Habits by James Clear ❌</i></blockquote>
+━━━━━━━━━━━━━━━━━━━━
+<blockquote></b>🤔  𝗦𝗧𝗜𝗟𝗟 𝗖𝗔𝗡'𝗧 𝗙𝗜𝗡𝗗 𝗜𝗧 ❓</b></blockquote>
+╰┈➤ <i>No worries. We will make it available for you.</i>
+<b>➜ Tap the appropriate 𝗥𝗘𝗤𝗨𝗘𝗦𝗧 button below, then 𝗦𝗘𝗡𝗗 :</b>
+<blockquote>✍️ <i></b>TITLE</b> by </b>Author Name</b></i> — MUST specify -(BOOK or AUDIOBOOK)</blockquote>)
         else:
             return
     else:
