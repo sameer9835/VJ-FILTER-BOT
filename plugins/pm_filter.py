@@ -2552,10 +2552,11 @@ async def auto_filter(client, name, msg, reply_msg, ai_search, spoll=False):
                 if settings["spell_check"]:
                     return await advantage_spell_chok(client, name, msg, reply_msg, ai_search)
                 else:
-                    return await reply_msg.edit_text(f"""</b>❌ 𝗡𝗢 𝗠𝗔𝗧𝗖𝗛 𝗙𝗢𝗨𝗡𝗗 𝗙𝗢𝗥 :</b>
-╰┈➤ </b>{}</b>
+                    return await reply_msg.edit_text(
+    f"""</b>❌ 𝗡𝗢 𝗠𝗔𝗧𝗖𝗛 𝗙𝗢𝗨𝗡𝗗 𝗙𝗢𝗥 :</b>
+╰┈➤ </b>{html.escape(name)}</b>
 
-👤 𝗦𝗲𝗮𝗿𝗰𝗵𝗲𝗱 𝗯𝘆 ➜ {}
+👤 𝗦𝗲𝗮𝗿𝗰𝗵𝗲𝗱 𝗯𝘆 ➜ {message.from_user.mention}
 ━━━━━━━━━━━━━━━━━━━━
 <blockquote></b>🔍 𝗕𝗘𝗙𝗢𝗥𝗘 𝗦𝗘𝗔𝗥𝗖𝗛𝗜𝗡𝗚, 𝗤𝗨𝗜𝗖𝗞𝗟𝗬 𝗖𝗛𝗘𝗖𝗞 :</b></blockquote>
 1️⃣  <b>Is the spelling correct ?</b>
@@ -2568,7 +2569,29 @@ async def auto_filter(client, name, msg, reply_msg, ai_search, spoll=False):
 <blockquote></b>🤔  𝗦𝗧𝗜𝗟𝗟 𝗖𝗔𝗡'𝗧 𝗙𝗜𝗡𝗗 𝗜𝗧 ❓</b></blockquote>
 ╰┈➤ <i>No worries. We will make it available for you.</i>
 <b>➜ Tap the appropriate 𝗥𝗘𝗤𝗨𝗘𝗦𝗧 button below, then 𝗦𝗘𝗡𝗗 :</b>
-<blockquote>✍️ <i></b>TITLE</b> by </b>Author Name</b></i> — MUST specify -(BOOK or AUDIOBOOK)</blockquote>""")
+<blockquote>✍️ <i></b>TITLE</b> by </b>Author Name</b></i> — MUST specify -(BOOK or AUDIOBOOK)</blockquote>""",
+    reply_markup=InlineKeyboardMarkup([
+        [
+            InlineKeyboardButton(
+                "📝 FULL INSTRUCTIONS 👈",
+                url="https://t.me/Book_request_BUYM/1/32301"
+            )
+        ],
+        [
+            InlineKeyboardButton(
+                "📌 REQUEST a BOOK 📖",
+                url="https://t.me/Book_request_BUYM/39977/40013"
+            )
+        ],
+        [
+            InlineKeyboardButton(
+                "📍 REQUEST an AUDIOBOOK 🎧",
+                url="https://t.me/Book_request_BUYM/39979/40023"
+            )
+        ]
+    ]),
+    parse_mode=enums.ParseMode.HTML
+)
         else:
             return
     else:
