@@ -2552,7 +2552,7 @@ async def auto_filter(client, name, msg, reply_msg, ai_search, spoll=False):
                 if settings["spell_check"]:
                     return await advantage_spell_chok(client, name, msg, reply_msg, ai_search)
                 else:
-                    return await reply_msg.edit_text(</b>❌ 𝗡𝗢 𝗠𝗔𝗧𝗖𝗛 𝗙𝗢𝗨𝗡𝗗 𝗙𝗢𝗥 :</b>
+                    return await reply_msg.edit_text(f"""</b>❌ 𝗡𝗢 𝗠𝗔𝗧𝗖𝗛 𝗙𝗢𝗨𝗡𝗗 𝗙𝗢𝗥 :</b>
 ╰┈➤ </b>{}</b>
 
 👤 𝗦𝗲𝗮𝗿𝗰𝗵𝗲𝗱 𝗯𝘆 ➜ {}
@@ -2568,7 +2568,7 @@ async def auto_filter(client, name, msg, reply_msg, ai_search, spoll=False):
 <blockquote></b>🤔  𝗦𝗧𝗜𝗟𝗟 𝗖𝗔𝗡'𝗧 𝗙𝗜𝗡𝗗 𝗜𝗧 ❓</b></blockquote>
 ╰┈➤ <i>No worries. We will make it available for you.</i>
 <b>➜ Tap the appropriate 𝗥𝗘𝗤𝗨𝗘𝗦𝗧 button below, then 𝗦𝗘𝗡𝗗 :</b>
-<blockquote>✍️ <i></b>TITLE</b> by </b>Author Name</b></i> — MUST specify -(BOOK or AUDIOBOOK)</blockquote>)
+<blockquote>✍️ <i></b>TITLE</b> by </b>Author Name</b></i> — MUST specify -(BOOK or AUDIOBOOK)</blockquote>""")
         else:
             return
     else:
