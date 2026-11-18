@@ -116,6 +116,7 @@ Join My <a href='https://telegram.dog/vj_botz'>Update Channel</a> For More Updat
 * `ADMINS`: Username or ID of Admin. Separate multiple Admins by space
 * `DATABASE_URI`: [mongoDB](https://www.mongodb.com) URI. Get this value from [mongoDB](https://www.mongodb.com). For more help watch this [video](https://youtu.be/DAHRmFdw99o)
 * `LOG_CHANNEL` : A channel to log the activities of bot. Make sure bot is an admin in the channel.</b>
+* `SEKA_CONTROL_OWNER_ID`: Telegram numeric user ID allowed to control SEKA and view delivery statistics in private chat.
 
 
 <details><summary><b>Deploy To Heroku</b></summary>

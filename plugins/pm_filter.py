@@ -6,7 +6,7 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQ
 from pyrogram import Client, filters, enums
 from pyrogram.errors import FloodWait, UserIsBlocked, MessageNotModified, PeerIdInvalid
 from pyrogram.errors.exceptions.bad_request_400 import MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty
-from utils import get_size, is_subscribed, pub_is_subscribed, get_poster, search_gagala, temp, get_settings, save_group_settings, get_shortlink, get_tutorial, send_all, get_cap
+from utils import get_size, is_subscribed, pub_is_subscribed, get_poster, search_gagala, temp, get_settings, save_group_settings, get_shortlink, get_tutorial, send_all, get_cap, apply_seka_buttons, record_primary_file_delivery
 from database.users_chats_db import db
 from database.ia_filterdb import col, sec_col, db as vjdb, sec_db, get_file_details, get_search_results, get_bad_files
 from database.filters_mdb import del_all, find_filter, get_filters
@@ -1420,13 +1420,13 @@ async def cb_handler(client: Client, query: CallbackQuery):
       #      await query.answer(script.OLD_ALRT_TXT.format(query.from_user.first_name),show_alert=True)
       #      return
         files, n_offset, total = await get_search_results(query.message.chat.id, search, offset=int(offset), filter=True)
-        await send_all(client, query.from_user.id, files, ident, query.message.chat.id, query.from_user.first_name, query)
+        await send_all(client, query.from_user.id, files, ident, query.message.chat.id, query.from_user.first_name, query, primary_delivery=True)
         search = BUTTONS1.get(key)
         files, n_offset, total = await get_search_results(query.message.chat.id, search, offset=int(offset), filter=True)
-        await send_all(client, query.from_user.id, files, ident, query.message.chat.id, query.from_user.first_name, query)
+        await send_all(client, query.from_user.id, files, ident, query.message.chat.id, query.from_user.first_name, query, primary_delivery=True)
         search = BUTTONS2.get(key)
         files, n_offset, total = await get_search_results(query.message.chat.id, search, offset=int(offset), filter=True)
-        await send_all(client, query.from_user.id, files, ident, query.message.chat.id, query.from_user.first_name, query)
+        await send_all(client, query.from_user.id, files, ident, query.message.chat.id, query.from_user.first_name, query, primary_delivery=True)
         await query.answer(f"Hey {query.from_user.first_name}, All files on this page has been sent successfully to your PM !", show_alert=True)
         
     elif query.data.startswith("send_fall"):
@@ -1436,7 +1436,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
        #     await query.answer(script.OLD_ALRT_TXT.format(query.from_user.first_name),show_alert=True)
       #      return
         files, n_offset, total = await get_search_results(query.message.chat.id, search, offset=int(offset), filter=True)
-        await send_all(client, query.from_user.id, files, ident, query.message.chat.id, query.from_user.first_name, query)
+        await send_all(client, query.from_user.id, files, ident, query.message.chat.id, query.from_user.first_name, query, primary_delivery=True)
         await query.answer(f"Hey {query.from_user.first_name}, All files on this page has been sent successfully to your PM !", show_alert=True)
         
     elif query.data.startswith("killfilesdq"):
@@ -2984,13 +2984,16 @@ async def manual_filters(client, message, text=False):
                                     reply_msg = await message.reply_text(f"<b><i>Searching For {message.text} 🔍</i></b>")
                                     await auto_filter(client, message.text, message, reply_msg, ai_search)
                     elif btn == "[]":
+                        reply_markup, seka_enabled = await apply_seka_buttons(primary_delivery=True)
                         joelkb = await client.send_cached_media(
                             group_id,
                             fileid,
                             caption=reply_text or "",
                             protect_content=True if settings["file_secure"] else False,
-                            reply_to_message_id=reply_id
+                            reply_to_message_id=reply_id,
+                            reply_markup=reply_markup
                         )
+                        await record_primary_file_delivery(joelkb, seka_enabled, primary_delivery=True)
                         try:
                             if settings['auto_ffilter']:
                                 ai_search = True
@@ -3204,12 +3207,15 @@ async def global_filters(client, message, text=False):
                                         await joelkb.delete()
 
                     elif btn == "[]":
+                        reply_markup, seka_enabled = await apply_seka_buttons(primary_delivery=True)
                         joelkb = await client.send_cached_media(
                             group_id,
                             fileid,
                             caption=reply_text or "",
-                            reply_to_message_id=reply_id
+                            reply_to_message_id=reply_id,
+                            reply_markup=reply_markup
                         )
+                        await record_primary_file_delivery(joelkb, seka_enabled, primary_delivery=True)
                         manual = await manual_filters(client, message)
                         if manual == False:
                             settings = await get_settings(message.chat.id)

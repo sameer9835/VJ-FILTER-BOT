@@ -20,6 +20,84 @@ from shortzy import Shortzy
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 join_db = JoinReqs
+
+SEKA_TRANSLATE_URL = "https://seka.one/book-translator?source=bookbuddy"
+SEKA_EXPLORE_URL = "http://seka.one/?source=bookbuddy"
+READ_INSTRUCTIONS_BUTTON = "✅ Read Complete Instruction 👈"
+READ_INSTRUCTIONS_URL = "https://t.me/Book_request_BUYM/32301"
+
+
+class SekaKeyboardMergeError(ValueError):
+    pass
+
+
+async def apply_seka_buttons(reply_markup=None, primary_delivery=False,
+                             remove_instructions=False, include_explore=True,
+                             require_merge=False):
+    """Add SEKA links only to explicitly approved primary-bot deliveries."""
+    if not primary_delivery:
+        return reply_markup, False
+
+    try:
+        enabled = await db.get_seka_enabled()
+    except Exception:
+        logger.warning("Could not read the saved SEKA setting; using the original keyboard")
+        return reply_markup, False
+
+    if not enabled:
+        return reply_markup, False
+
+    if reply_markup is None:
+        rows = []
+    elif isinstance(reply_markup, InlineKeyboardMarkup):
+        rows = [list(row) for row in reply_markup.inline_keyboard]
+    else:
+        message = "Cannot safely merge SEKA links with this keyboard type"
+        if require_merge:
+            raise SekaKeyboardMergeError(message)
+        logger.warning(message)
+        return reply_markup, False
+
+    if remove_instructions:
+        rows = [
+            [button for button in row if not (
+                getattr(button, "text", None) == READ_INSTRUCTIONS_BUTTON
+                and getattr(button, "url", None) == READ_INSTRUCTIONS_URL
+            )]
+            for row in rows
+        ]
+        rows = [row for row in rows if row]
+
+    existing = [button for row in rows for button in row]
+    if not any(getattr(button, "text", None) == "Translate with SEKA"
+               and getattr(button, "url", None) == SEKA_TRANSLATE_URL for button in existing):
+        rows.append([InlineKeyboardButton("Translate with SEKA", url=SEKA_TRANSLATE_URL)])
+    if include_explore and not any(getattr(button, "text", None) == "Explore SEKA"
+                                   and getattr(button, "url", None) == SEKA_EXPLORE_URL for button in existing):
+        rows.append([InlineKeyboardButton("Explore SEKA", url=SEKA_EXPLORE_URL)])
+
+    try:
+        return InlineKeyboardMarkup(rows), True
+    except Exception as e:
+        if require_merge:
+            raise SekaKeyboardMergeError("Cannot safely build the SEKA keyboard") from e
+        logger.warning("Could not build the SEKA keyboard; using the original keyboard")
+        return reply_markup, False
+
+
+async def record_primary_file_delivery(message, seka_enabled, primary_delivery=False):
+    """Best-effort event recording; never retries the Telegram send."""
+    if not primary_delivery or not message or not getattr(message, "media", None):
+        return False
+    try:
+        return await db.record_file_delivery_event(
+            message.chat.id,
+            message.id,
+            bool(seka_enabled)
+        )
+    except Exception:
+        logger.warning("Could not record a successful file delivery")
+        return False
 BTN_URL_REGEX = re.compile(r"(\[([^\[]+?)\]\((buttonurl|buttonalert):(?:/{0,2})(.+?)(:same)?\))")
 
 imdb = Cinemagoer() 
@@ -598,7 +676,7 @@ async def check_verification(bot, userid):
     else:
         return False  
     
-async def send_all(bot, userid, files, ident, chat_id, user_name, query):
+async def send_all(bot, userid, files, ident, chat_id, user_name, query, primary_delivery=False):
     settings = await get_settings(chat_id)
     if 'is_shortlink' in settings.keys():
         ENABLE_SHORTLINK = settings['is_shortlink']
@@ -627,21 +705,31 @@ async def send_all(bot, userid, files, ident, chat_id, user_name, query):
                             f_caption = f_caption
                     if f_caption is None:
                         f_caption = f"{title}"
-                    await bot.send_cached_media(
+                    original_markup = InlineKeyboardMarkup(
+                        [
+                            [
+                                InlineKeyboardButton('Sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ', url=GRP_LNK),
+                                InlineKeyboardButton('Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ', url=CHNL_LNK)
+                            ], [
+                                InlineKeyboardButton("Bᴏᴛ Oᴡɴᴇʀ", url="t.me/kingvj01")
+                            ]
+                        ]
+                    )
+                    reply_markup, seka_enabled = await apply_seka_buttons(
+                        original_markup,
+                        primary_delivery=primary_delivery
+                    )
+                    sent_message = await bot.send_cached_media(
                         chat_id=userid,
                         file_id=file["file_id"],
                         caption=f_caption,
                         protect_content=True if ident == "filep" else False,
-                        reply_markup=InlineKeyboardMarkup(
-                            [
-                                [
-                                InlineKeyboardButton('Sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ', url=GRP_LNK),
-                                InlineKeyboardButton('Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ', url=CHNL_LNK)
-                            ],[
-                                InlineKeyboardButton("Bᴏᴛ Oᴡɴᴇʀ", url="t.me/kingvj01")
-                                ]
-                            ]
-                        )
+                        reply_markup=reply_markup
+                    )
+                    await record_primary_file_delivery(
+                        sent_message,
+                        seka_enabled,
+                        primary_delivery=primary_delivery
                     )
     except UserIsBlocked:
         await query.answer('Uɴʙʟᴏᴄᴋ ᴛʜᴇ ʙᴏᴛ ᴍᴀʜɴ !', show_alert=True)

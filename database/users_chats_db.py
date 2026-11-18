@@ -2,13 +2,17 @@
 # Subscribe YouTube Channel For Amazing Bot @Tech_VJ
 # Ask Doubt on telegram @KingVJ01
 
+import asyncio
+import datetime
+import logging
 import re
 from pymongo.errors import DuplicateKeyError
 import motor.motor_asyncio
 from pymongo import MongoClient
 from info import DATABASE_NAME, USER_DB_URI, OTHER_DB_URI, CUSTOM_FILE_CAPTION, IMDB, IMDB_TEMPLATE, MELCOW_NEW_USERS, BUTTON_MODE, SPELL_CHECK_REPLY, PROTECT_CONTENT, AUTO_DELETE, MAX_BTN, AUTO_FFILTER, SHORTLINK_API, SHORTLINK_URL, SHORTLINK_MODE, TUTORIAL, IS_TUTORIAL
 import time
-import datetime
+
+logger = logging.getLogger(__name__)
 
 my_client = MongoClient(OTHER_DB_URI)
 mydb = my_client["referal_user"]
@@ -66,6 +70,88 @@ class Database:
         self.grp = self.db.groups
         self.users = self.db.uersz
         self.bot = self.db.clone_bots
+        self.global_settings = self.db.bot_settings
+        self.file_delivery_events = self.db.file_delivery_events
+        self._file_delivery_index_ready = False
+
+    async def get_seka_enabled(self):
+        setting = await asyncio.wait_for(
+            self.global_settings.find_one({'_id': 'seka'}),
+            timeout=0.25
+        )
+        return setting.get('enabled') is True if setting else False
+
+    async def set_seka_enabled(self, enabled):
+        for attempt in range(3):
+            try:
+                result = await asyncio.wait_for(
+                    self.global_settings.update_one(
+                        {'_id': 'seka'},
+                        {'$set': {'enabled': bool(enabled)}},
+                        upsert=True
+                    ),
+                    timeout=1.5
+                )
+                if not result.acknowledged:
+                    raise RuntimeError('MongoDB did not acknowledge the SEKA setting update')
+                return
+            except Exception:
+                if attempt == 2:
+                    raise
+                await asyncio.sleep(0.15 * (2 ** attempt))
+
+    async def record_file_delivery_event(self, chat_id, message_id, seka_enabled):
+        event_id = f'{int(chat_id)}:{int(message_id)}'
+        event = {
+            '_id': event_id,
+            'chat_id': int(chat_id),
+            'message_id': int(message_id),
+            'sent_at': datetime.datetime.now(datetime.timezone.utc).replace(tzinfo=None),
+            'seka_enabled': bool(seka_enabled),
+        }
+        for attempt in range(2):
+            try:
+                result = await asyncio.wait_for(
+                    self.file_delivery_events.update_one(
+                        {'_id': event_id},
+                        {'$setOnInsert': event},
+                        upsert=True
+                    ),
+                    timeout=0.25
+                )
+                if not result.acknowledged:
+                    raise RuntimeError('MongoDB did not acknowledge the delivery event')
+                return True
+            except Exception:
+                if attempt == 1:
+                    logger.warning('Could not record a file-delivery event after retries')
+                    return False
+                await asyncio.sleep(0.05)
+
+    async def _ensure_file_delivery_index(self):
+        if self._file_delivery_index_ready:
+            return
+        try:
+            await asyncio.wait_for(
+                self.file_delivery_events.create_index([('sent_at', 1)]),
+                timeout=1.0
+            )
+            self._file_delivery_index_ready = True
+        except Exception:
+            logger.warning('Could not ensure the file-delivery timestamp index')
+
+    async def get_file_delivery_counts(self, start_utc, end_utc):
+        await self._ensure_file_delivery_index()
+        period = {'sent_at': {'$gte': start_utc, '$lt': end_utc}}
+        total = await asyncio.wait_for(
+            self.file_delivery_events.count_documents(period),
+            timeout=1.0
+        )
+        seka_enabled = await asyncio.wait_for(
+            self.file_delivery_events.count_documents({**period, 'seka_enabled': True}),
+            timeout=1.0
+        )
+        return total, seka_enabled
 
 
     def new_user(self, id, name):
