@@ -69,12 +69,12 @@ async def apply_seka_buttons(reply_markup=None, primary_delivery=False,
         rows = [row for row in rows if row]
 
     existing = [button for row in rows for button in row]
-    if not any(getattr(button, "text", None) == "Translate with SEKA"
+    if not any(getattr(button, "text", None) == "🌐 Translate with SEKA"
                and getattr(button, "url", None) == SEKA_TRANSLATE_URL for button in existing):
-        rows.append([InlineKeyboardButton("Translate with SEKA", url=SEKA_TRANSLATE_URL)])
-    if include_explore and not any(getattr(button, "text", None) == "Explore SEKA"
+        rows.append([InlineKeyboardButton("🌐 Translate with SEKA", url=SEKA_TRANSLATE_URL)])
+    if include_explore and not any(getattr(button, "text", None) == "🗺️ Explore SEKA"
                                    and getattr(button, "url", None) == SEKA_EXPLORE_URL for button in existing):
-        rows.append([InlineKeyboardButton("Explore SEKA", url=SEKA_EXPLORE_URL)])
+        rows.append([InlineKeyboardButton("🗺️ Explore SEKA", url=SEKA_EXPLORE_URL)])
 
     try:
         return InlineKeyboardMarkup(rows), True
