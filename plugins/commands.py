@@ -714,7 +714,7 @@ async def start(client, message):
             btn = [[
                 InlineKeyboardButton("Get that File Again", callback_data=f'del#{file_id}')
             ]]
-            k = await msg.reply("<b><u>❗️❗️IMPORTANT❗️❗️</u></b>\n\nThis book will be deleted in <b><u>5 mins</u> 🫥 <i></b>(Due to Copyright Issues)</i>.\n\n<b><i>Please forward or save this File to your Saved Messages and Start Download there</i></b>",quote=True)
+            k = await msg.reply("🎁 It is a little gift for your curious mind.\n<i>Hope you'll enjoy it and discover something meaningful in it.</i>\n\n<b>NOTE: ⏳ Auto-deletes in <u>5 minutes</u>.</b>\n\n<b><i>Please Forward it to Saved Messages, first, then download it there.</i></b>",quote=True)
             await asyncio.sleep(300)
             await msg.delete()
             followup_markup, _ = await apply_seka_buttons(
@@ -773,7 +773,7 @@ async def start(client, message):
     btn = [[
         InlineKeyboardButton("Get that File Again", callback_data=f'del#{file_id}')
     ]]
-    k = await msg.reply("<b><u>❗️❗️IMPORTANT❗️❗️</u></b>\n\nThis book will be deleted in <b><u>5 mins</u> 🫥 <i></b>(Due to Copyright Issues)</i>.\n\n<b><i>Please forward or save this File to your Saved Messages and Start Download there</i></b>",quote=True)
+    k = await msg.reply("🎁 It is a little gift for your curious mind.\n<i>Hope you'll enjoy it and discover something meaningful in it.</i>\n\n<b>NOTE: ⏳ Auto-deletes in <u>5 minutes</u>.</b>\n\n<b><i>Please Forward it to Saved Messages, first, then download it there.</i></b>",quote=True)
     await asyncio.sleep(300)
     await msg.delete()
     followup_markup, _ = await apply_seka_buttons(
