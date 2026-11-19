@@ -2,7 +2,7 @@
 # Subscribe YouTube Channel For Amazing Bot @Tech_VJ
 # Ask Doubt on telegram @KingVJ01
 
-import os, string, logging, random, asyncio, time, datetime, re, sys, json, base64
+import os, string, logging, random, asyncio, time, datetime, re, sys, json, base64, pytz
 from Script import script
 from pyrogram import Client, filters, enums
 from pyrogram.errors import ChatAdminRequired, FloodWait
@@ -10,8 +10,8 @@ from pyrogram.types import *
 from database.ia_filterdb import col, sec_col, get_file_details, unpack_new_file_id, get_bad_files
 from database.users_chats_db import db, delete_all_referal_users, get_referal_users_count, get_referal_all_users, referal_add_user
 from database.join_reqs import JoinReqs
-from info import CLONE_MODE, OWNER_LNK, REACTIONS, CHANNELS, REQUEST_TO_JOIN_MODE, TRY_AGAIN_BTN, ADMINS, SHORTLINK_MODE, PREMIUM_AND_REFERAL_MODE, STREAM_MODE, AUTH_CHANNEL, REFERAL_PREMEIUM_TIME, REFERAL_COUNT, PAYMENT_TEXT, PAYMENT_QR, LOG_CHANNEL, PICS, BATCH_FILE_CAPTION, CUSTOM_FILE_CAPTION, PROTECT_CONTENT, CHNL_LNK, GRP_LNK, REQST_CHANNEL, SUPPORT_CHAT_ID, SUPPORT_CHAT, MAX_B_TN, VERIFY, SHORTLINK_API, SHORTLINK_URL, TUTORIAL, VERIFY_TUTORIAL, IS_TUTORIAL, URL
-from utils import get_settings, pub_is_subscribed, get_size, is_subscribed, save_group_settings, temp, verify_user, check_token, check_verification, get_token, get_shortlink, get_tutorial, get_seconds
+from info import CLONE_MODE, OWNER_LNK, REACTIONS, CHANNELS, REQUEST_TO_JOIN_MODE, TRY_AGAIN_BTN, ADMINS, SHORTLINK_MODE, PREMIUM_AND_REFERAL_MODE, STREAM_MODE, AUTH_CHANNEL, REFERAL_PREMEIUM_TIME, REFERAL_COUNT, PAYMENT_TEXT, PAYMENT_QR, LOG_CHANNEL, PICS, BATCH_FILE_CAPTION, CUSTOM_FILE_CAPTION, PROTECT_CONTENT, CHNL_LNK, GRP_LNK, REQST_CHANNEL, SUPPORT_CHAT_ID, SUPPORT_CHAT, MAX_B_TN, VERIFY, SHORTLINK_API, SHORTLINK_URL, TUTORIAL, VERIFY_TUTORIAL, IS_TUTORIAL, URL, SEKA_CONTROL_OWNER_ID
+from utils import get_settings, pub_is_subscribed, get_size, is_subscribed, save_group_settings, temp, verify_user, check_token, check_verification, get_token, get_shortlink, get_tutorial, get_seconds, apply_seka_buttons, record_primary_file_delivery, SekaKeyboardMergeError
 from database.connections_mdb import active_connection
 from urllib.parse import quote_plus
 from TechVJ.util.file_properties import get_name, get_hash, get_media_file_size
@@ -19,6 +19,78 @@ logger = logging.getLogger(__name__)
 
 BATCH_FILES = {}
 join_db = JoinReqs
+
+
+def _owner_command_allowed(message):
+    return (
+        SEKA_CONTROL_OWNER_ID is not None
+        and message.chat.type == enums.ChatType.PRIVATE
+        and message.from_user is not None
+        and message.from_user.id == SEKA_CONTROL_OWNER_ID
+    )
+
+
+def _stats_period(period):
+    tz = pytz.timezone('Asia/Kolkata')
+    now = datetime.datetime.now(tz)
+    if period == 'daily':
+        start = now.replace(hour=0, minute=0, second=0, microsecond=0)
+        end = start + datetime.timedelta(days=1)
+    elif period == 'weekly':
+        today = now.replace(hour=0, minute=0, second=0, microsecond=0)
+        start = today - datetime.timedelta(days=today.weekday())
+        end = start + datetime.timedelta(days=7)
+    elif period == 'monthly':
+        start = now.replace(day=1, hour=0, minute=0, second=0, microsecond=0)
+        if start.month == 12:
+            end = start.replace(year=start.year + 1, month=1)
+        else:
+            end = start.replace(month=start.month + 1)
+    else:
+        raise ValueError('Unsupported statistics period')
+    return (
+        start.astimezone(pytz.UTC).replace(tzinfo=None),
+        end.astimezone(pytz.UTC).replace(tzinfo=None)
+    )
+
+
+@Client.on_message(filters.command('seka') & filters.private)
+async def seka_control(client, message):
+    if not _owner_command_allowed(message):
+        return
+    if len(message.command) != 2 or message.command[1].lower() not in ('on', 'off', 'status'):
+        return await message.reply_text('Use /seka on, /seka off, or /seka status.')
+    action = message.command[1].lower()
+    if action == 'status':
+        try:
+            enabled = await db.get_seka_enabled()
+        except Exception:
+            logger.warning('Could not read the saved SEKA setting')
+            return await message.reply_text('SEKA status is temporarily unavailable.')
+        return await message.reply_text(f"SEKA is {'ON' if enabled else 'OFF'}.")
+    try:
+        await db.set_seka_enabled(action == 'on')
+    except Exception:
+        logger.warning('Could not save the SEKA setting')
+        return await message.reply_text('The SEKA setting was not saved.')
+    await message.reply_text(f"SEKA is now {'ON' if action == 'on' else 'OFF'}.")
+
+
+@Client.on_message(filters.command('bbstats') & filters.private)
+async def bb_stats(client, message):
+    if not _owner_command_allowed(message):
+        return
+    if len(message.command) != 2 or message.command[1].lower() not in ('daily', 'weekly', 'monthly'):
+        return await message.reply_text('Use /bbstats daily, /bbstats weekly, or /bbstats monthly.')
+    try:
+        start_utc, end_utc = _stats_period(message.command[1].lower())
+        total, seka_enabled = await db.get_file_delivery_counts(start_utc, end_utc)
+    except Exception:
+        logger.warning('Could not read file-delivery statistics')
+        return await message.reply_text('Statistics are temporarily unavailable.')
+    await message.reply_text(
+        f'Successful File Deliveries: {total}\nSEKA-Enabled Deliveries: {seka_enabled}'
+    )
 
 @Client.on_message(filters.command("start") & filters.incoming)
 async def start(client, message):
@@ -289,24 +361,33 @@ async def start(client, message):
                     ],[
                         InlineKeyboardButton('𝗕𝗢𝗧 𝗢𝗪𝗡𝗘𝗥', url=OWNER_LNK)
                     ]]
-                msg = await client.send_cached_media(
-                    chat_id=message.from_user.id,
-                    file_id=msg.get("file_id"),
-                    caption=f_caption,
-                    protect_content=msg.get('protect', False)
-                )
-                filesarr.append(msg)
-                
-            except FloodWait as e:
-                k = await message.reply_text(f"Waiting For {e.value} Seconds.")
-                await asyncio.sleep(e.value)
+                delivery_markup, seka_enabled = await apply_seka_buttons(primary_delivery=True)
+                send_options = {'reply_markup': delivery_markup} if delivery_markup is not None else {}
                 msg = await client.send_cached_media(
                     chat_id=message.from_user.id,
                     file_id=msg.get("file_id"),
                     caption=f_caption,
                     protect_content=msg.get('protect', False),
-                    reply_markup=InlineKeyboardMarkup(button)
+                    **send_options
                 )
+                await record_primary_file_delivery(msg, seka_enabled, primary_delivery=True)
+                filesarr.append(msg)
+                
+            except FloodWait as e:
+                k = await message.reply_text(f"Waiting For {e.value} Seconds.")
+                await asyncio.sleep(e.value)
+                delivery_markup, seka_enabled = await apply_seka_buttons(
+                    InlineKeyboardMarkup(button),
+                    primary_delivery=True
+                )
+                msg = await client.send_cached_media(
+                    chat_id=message.from_user.id,
+                    file_id=msg.get("file_id"),
+                    caption=f_caption,
+                    protect_content=msg.get('protect', False),
+                    reply_markup=delivery_markup
+                )
+                await record_primary_file_delivery(msg, seka_enabled, primary_delivery=True)
                 filesarr.append(msg)
                 await k.delete()
             except Exception as e:
@@ -318,7 +399,9 @@ async def start(client, message):
         await asyncio.sleep(300)
         for x in filesarr:
             await x.delete()
-        await k.edit_text("<b>Your book has been deleted successfully!!</b>")  
+        final_markup, _ = await apply_seka_buttons(primary_delivery=True, include_explore=False)
+        final_options = {'reply_markup': final_markup} if final_markup is not None else {}
+        await k.edit_text("<b>Your book has been deleted successfully!!</b>", **final_options)
         return
     
     elif data.split("-", 1)[0] == "DSTORE":
@@ -394,13 +477,25 @@ async def start(client, message):
                     button = [[
                         InlineKeyboardButton('✅ Read Complete Instruction 👈', url=f'https://t.me/Book_request_BUYM/32301')
                     ]]
+                delivery_markup, seka_enabled = await apply_seka_buttons(
+                    InlineKeyboardMarkup(button),
+                    primary_delivery=True,
+                    remove_instructions=STREAM_MODE != True
+                )
                 try:
-                    p = await msg.copy(message.chat.id, caption=f_caption, protect_content=True if protect == "/pbatch" else False, reply_markup=InlineKeyboardMarkup(button))
+                    p = await msg.copy(message.chat.id, caption=f_caption, protect_content=True if protect == "/pbatch" else False, reply_markup=delivery_markup)
+                    await record_primary_file_delivery(p, seka_enabled, primary_delivery=True)
                     filesarr.append(p)
                 except FloodWait as e:
                     k = await message.reply_text(f"Waiting For {e.value} Seconds.")
                     await asyncio.sleep(e.value)
-                    p = await msg.copy(message.chat.id, caption=f_caption, protect_content=True if protect == "/pbatch" else False, reply_markup=InlineKeyboardMarkup(button))
+                    delivery_markup, seka_enabled = await apply_seka_buttons(
+                        InlineKeyboardMarkup(button),
+                        primary_delivery=True,
+                        remove_instructions=STREAM_MODE != True
+                    )
+                    p = await msg.copy(message.chat.id, caption=f_caption, protect_content=True if protect == "/pbatch" else False, reply_markup=delivery_markup)
+                    await record_primary_file_delivery(p, seka_enabled, primary_delivery=True)
                     filesarr.append(p)
                     await k.delete()
                 except Exception as e:
@@ -427,7 +522,9 @@ async def start(client, message):
         await asyncio.sleep(300)
         for x in filesarr:
             await x.delete()
-        await k.edit_text("<b>Your Book has been deleted successfully!!</b>")
+        final_markup, _ = await apply_seka_buttons(primary_delivery=True, include_explore=False)
+        final_options = {'reply_markup': final_markup} if final_markup is not None else {}
+        await k.edit_text("<b>Your Book has been deleted successfully!!</b>", **final_options)
         return
 
     elif data.split("-", 1)[0] == "verify":
@@ -523,13 +620,19 @@ async def start(client, message):
                     ]]
             if STREAM_MODE == True:
                 button.append([InlineKeyboardButton('🚀 Fast Download / Watch Online🖥️', callback_data=f'generate_stream_link:{file_id}')])
+            delivery_markup, seka_enabled = await apply_seka_buttons(
+                InlineKeyboardMarkup(button),
+                primary_delivery=True,
+                remove_instructions=True
+            )
             msg = await client.send_cached_media(
                 chat_id=message.from_user.id,
                 file_id=file_id,
                 caption=f_caption,
                 protect_content=True if pre == 'allfilesp' else False,
-                reply_markup=InlineKeyboardMarkup(button)
+                reply_markup=delivery_markup
             )
+            await record_primary_file_delivery(msg, seka_enabled, primary_delivery=True)
             filesarr.append(msg)
         k = await client.send_message(chat_id = message.from_user.id, text=f"<b><u>❗️❗️IMPORTANT❗️❗️</u></b>\n\nThese Files will be deleted in <b><u>10 mins</u> 🫥 <i></b>(Due to Copyright Issues)</i>.\n\n<b><i>Please forward or save these Files to your Saved Messages and Start Download there</i></b>")
         await asyncio.sleep(600)
@@ -582,12 +685,18 @@ async def start(client, message):
                     ]]
             if STREAM_MODE == True:
                 button.append([InlineKeyboardButton('🚀 Fast Download / Watch Online🖥️', callback_data=f'generate_stream_link:{file_id}')])
+            delivery_markup, seka_enabled = await apply_seka_buttons(
+                InlineKeyboardMarkup(button),
+                primary_delivery=True,
+                remove_instructions=True
+            )
             msg = await client.send_cached_media(
                 chat_id=message.from_user.id,
                 file_id=file_id,
                 protect_content=True if pre == 'filep' else False,
-                reply_markup=InlineKeyboardMarkup(button)
+                reply_markup=delivery_markup
             )
+            await record_primary_file_delivery(msg, seka_enabled, primary_delivery=True)
             filetype = msg.media
             file = getattr(msg, filetype.value)
             title = ' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@'), file.file_name.split()))
@@ -600,7 +709,7 @@ async def start(client, message):
                     return
             await msg.edit_caption(
                 caption=f_caption,
-                reply_markup=InlineKeyboardMarkup(button)
+                reply_markup=delivery_markup
             )
             btn = [[
                 InlineKeyboardButton("Get that File Again", callback_data=f'del#{file_id}')
@@ -608,7 +717,12 @@ async def start(client, message):
             k = await msg.reply("<b><u>❗️❗️IMPORTANT❗️❗️</u></b>\n\nThis book will be deleted in <b><u>5 mins</u> 🫥 <i></b>(Due to Copyright Issues)</i>.\n\n<b><i>Please forward or save this File to your Saved Messages and Start Download there</i></b>",quote=True)
             await asyncio.sleep(300)
             await msg.delete()
-            await k.edit_text("<b>Your book has been deleted successfully!!\n\nClick below button to get that file again 👇</b>",reply_markup=InlineKeyboardMarkup(btn))
+            followup_markup, _ = await apply_seka_buttons(
+                InlineKeyboardMarkup(btn),
+                primary_delivery=True,
+                include_explore=False
+            )
+            await k.edit_text("<b>Your book has been deleted successfully!!\n\nClick below button to get that file again 👇</b>",reply_markup=followup_markup)
             return
         except:
             pass
@@ -643,20 +757,31 @@ async def start(client, message):
                     ]]
     if STREAM_MODE == True:
         button.append([InlineKeyboardButton('🚀 Fast Download / Watch Online🖥️', callback_data=f'generate_stream_link:{file_id}')])
+    delivery_markup, seka_enabled = await apply_seka_buttons(
+        InlineKeyboardMarkup(button),
+        primary_delivery=True,
+        remove_instructions=True
+    )
     msg = await client.send_cached_media(
         chat_id=message.from_user.id,
         file_id=file_id,
         caption=f_caption,
         protect_content=True if pre == 'filep' else False,
-        reply_markup=InlineKeyboardMarkup(button)
+        reply_markup=delivery_markup
     )
+    await record_primary_file_delivery(msg, seka_enabled, primary_delivery=True)
     btn = [[
         InlineKeyboardButton("Get that File Again", callback_data=f'del#{file_id}')
     ]]
     k = await msg.reply("<b><u>❗️❗️IMPORTANT❗️❗️</u></b>\n\nThis book will be deleted in <b><u>5 mins</u> 🫥 <i></b>(Due to Copyright Issues)</i>.\n\n<b><i>Please forward or save this File to your Saved Messages and Start Download there</i></b>",quote=True)
     await asyncio.sleep(300)
     await msg.delete()
-    await k.edit_text("<b>Your book has been deleted successfully!!\n\nClick below button to get that file again 👇</b>",reply_markup=InlineKeyboardMarkup(btn))
+    followup_markup, _ = await apply_seka_buttons(
+        InlineKeyboardMarkup(btn),
+        primary_delivery=True,
+        include_explore=False
+    )
+    await k.edit_text("<b>Your book has been deleted successfully!!\n\nClick below button to get that file again 👇</b>",reply_markup=followup_markup)
     return   
 
 @Client.on_message(filters.command('channel') & filters.user(ADMINS))
@@ -1086,7 +1211,22 @@ async def send_msg(bot, message):
                 out += f"{usr['id']}"
                 out += '\n'
             if str(user.id) in str(out):
-                await message.reply_to_message.copy(int(user.id))
+                source_message = message.reply_to_message
+                if source_message.media:
+                    seka_enabled = False
+                    try:
+                        reply_markup, seka_enabled = await apply_seka_buttons(
+                            source_message.reply_markup,
+                            primary_delivery=True,
+                            require_merge=True
+                        )
+                    except SekaKeyboardMergeError:
+                        logger.warning('Could not merge SEKA buttons into the copied message keyboard')
+                    copy_options = {'reply_markup': reply_markup} if seka_enabled else {}
+                    delivered = await source_message.copy(int(user.id), **copy_options)
+                    await record_primary_file_delivery(delivered, seka_enabled, primary_delivery=True)
+                else:
+                    await source_message.copy(int(user.id))
                 success = True
             else:
                 success = False
