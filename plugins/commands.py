@@ -395,7 +395,7 @@ async def start(client, message):
                 continue
             await asyncio.sleep(1) 
         await sts.delete()
-        k = await client.send_message(chat_id = message.from_user.id, text=f"<b><u>❗️❗️IMPORTANT❗️️❗️</u></b>\n\nThese books will be deleted in <b><u>5 mins</u> 🫥 <i></b>(Due to Copyright Issues)</i>.\n\n<b><i>Please save or forward these books to your Saved Messages and Start Download there</i></b>")
+        k = await client.send_message(chat_id = message.from_user.id, text=f"🎁 It is a little gift for your curious mind.<i>Hope you'll enjoy it and discover something meaningful in it.</i>\n\n<b>NOTE: ⏳ Auto-deletes in <u>5 minutes</u>.</b>\n\n<b><i>Please Forward it to Saved Messages, first, then download it there.</i></b>")
         await asyncio.sleep(300)
         for x in filesarr:
             await x.delete()
@@ -518,7 +518,7 @@ async def start(client, message):
                     continue
             await asyncio.sleep(1)
         await sts.delete()
-        k = await client.send_message(chat_id = message.from_user.id, text=f"<b><u>❗️❗️IMPORTANT❗️️❗️</u></b>\n\nThese Books will be deleted in <b><u>5 mins</u> 🫥 <i></b>(Due to Copyright Issues)</i>.\n\n<b><i>Please forward or save these Files to your Saved Messages and Start Download there</i></b>")
+        k = await client.send_message(chat_id = message.from_user.id, text=f"🎁 It is a little gift for your curious mind.<i>Hope you'll enjoy it and discover something meaningful in it.</i>\n\n<b>NOTE: ⏳ Auto-deletes in <u>5 minutes</u>.</b>\n\n<b><i>Please Forward it to Saved Messages, first, then download it there.</i></b>")
         await asyncio.sleep(300)
         for x in filesarr:
             await x.delete()
@@ -634,7 +634,7 @@ async def start(client, message):
             )
             await record_primary_file_delivery(msg, seka_enabled, primary_delivery=True)
             filesarr.append(msg)
-        k = await client.send_message(chat_id = message.from_user.id, text=f"<b><u>❗️❗️IMPORTANT❗️❗️</u></b>\n\nThese Files will be deleted in <b><u>10 mins</u> 🫥 <i></b>(Due to Copyright Issues)</i>.\n\n<b><i>Please forward or save these Files to your Saved Messages and Start Download there</i></b>")
+        k = await client.send_message(chat_id = message.from_user.id, text=f"🎁 It is a little gift for your curious mind.<i>Hope you'll enjoy it and discover something meaningful in it.</i>\n\n<b>NOTE: ⏳ Auto-deletes in <u>5 minutes</u>.</b>\n\n<b><i>Please Forward it to Saved Messages, first, then download it there.</i></b>")
         await asyncio.sleep(600)
         for x in filesarr:
             await x.delete()
